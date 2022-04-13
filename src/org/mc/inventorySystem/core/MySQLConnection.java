@@ -5,48 +5,22 @@
  */
 package org.mc.inventorySystem.core;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.*;
+import javax.swing.*;
 
-public class ConexionMySQL {
-    //Aqui guardamos y gestinamos la conexion con MySQL:
-    Connection conexion;
+public class MySQLConnection {
 
-    /*
-    *Realizamos la conexión con la Base de datos y devolvemos 
-    *un objeto de tipo Connection.
-     */
-    public Connection open() throws Exception {
-        //Establecemos el Driver de MySQL:
-        String driver = "com.mysql.jdbc.Driver";
-        //Establecemos la ruta de conexion:
-        String url = "jdbc:mysql://localhost:3306/inventorysystem";
+    Connection conn = null;
 
-        //Establecemos el usuario y la contraseña:
-        String usuario = "root";
-        String contrasenia = "";
-
-        //Registramos el Driver 
-        //Nos sirve para ejecutar clases en tiempo de ejecucion 
-        Class.forName(driver);
-
-        //Abrimos la conexión con MySQL;
-        conexion = DriverManager.getConnection(url, usuario, contrasenia);
-
-        //Devolvemos el objeto que mantiene la conexion con MySQL:
-        return conexion;
-    }
-
-    //Cerramos la conexion con MySQL
-    public void close() {
+    public static Connection open() {
         try {
-            if (conexion != null) {
-                conexion.close();
-            }
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/inventorysystem", "root", "");
+            return conn;
         } catch (Exception e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e);
+            return null;
         }
-
     }
-    
 }
+
