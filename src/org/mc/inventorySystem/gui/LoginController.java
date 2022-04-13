@@ -7,6 +7,7 @@ package org.mc.inventorySystem.gui;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,8 +16,11 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -62,7 +66,7 @@ public class LoginController implements Initializable {
     a comparar los valores de las cajasd de texto con los que se encuentren 
     en la base de datos pra dar un acceso adecuado a la aplicación.
      */
-    public void login() {
+    public void login(ActionEvent event) throws IOException {
 
         //Tomamos los valores de las cajas de texto y los asignamos a una variable
         String user = txtUsuario.getText().toString();
@@ -76,6 +80,17 @@ public class LoginController implements Initializable {
             preparedStatement.setString(1, user);
             preparedStatement.setString(2, password);
             resultSet = preparedStatement.executeQuery();
+            if (!resultSet.next()) {
+                infoBox("Ingrese Usuario y Password Correctos", "Inicio de Sesión Fallido", null);
+            } else {
+                infoBox("Acceso Correcto. Bienvenido " + user, "Inicio de Sesión Correcto", null);
+                Node source = (Node) event.getSource();
+                dialogStage = (Stage) source.getScene().getWindow();
+                dialogStage.close();
+                scene = new Scene(FXMLLoader.load(getClass().getResource("FXMLMenu.fxml")));
+                dialogStage.setScene(scene);
+                dialogStage.show();
+            }
         } catch (SQLException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
