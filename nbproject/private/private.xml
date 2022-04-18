@@ -4,8 +4,6 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/practicante02/Documents/NetBeansProjects/inventorySystem/src/org/mc/inventorySystem/gui/Main.java</file>
-            <file>file:/C:/Users/practicante02/Documents/NetBeansProjects/inventorySystem/src/org/mc/inventorySystem/gui/fxml/Login.fxml</file>
-            <file>file:/C:/Users/practicante02/Documents/NetBeansProjects/inventorySystem/src/org/mc/inventorySystem/core/model/Usuario.java</file>
             <file>file:/C:/Users/practicante02/Documents/NetBeansProjects/inventorySystem/src/org/mc/inventorySystem/gui/LoginController.java</file>
         </group>
     </open-files>

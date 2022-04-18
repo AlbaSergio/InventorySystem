@@ -87,7 +87,7 @@ public class LoginController implements Initializable {
                 Node source = (Node) event.getSource();
                 dialogStage = (Stage) source.getScene().getWindow();
                 dialogStage.close();
-                scene = new Scene(FXMLLoader.load(getClass().getResource("/org/mc/inventorySystem/gui/fxml/Principal.fxml")));
+                scene = new Scene(FXMLLoader.load(getClass().getResource("/org/mc/inventorySystem/gui/fxml/Producto.fxml")));
                 dialogStage.setScene(scene);
                 dialogStage.show();
             }
