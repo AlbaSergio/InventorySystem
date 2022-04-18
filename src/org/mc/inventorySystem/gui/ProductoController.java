@@ -31,7 +31,7 @@ public class ProductoController implements Initializable {
     @FXML
     private JFXTextArea txtDescripcion;
     @FXML
-    private JFXComboBox<?> cmbCategoria;
+    private JFXComboBox<String> cmbCategoria;
     @FXML
     private JFXComboBox<?> cmbCapacidad;
     @FXML
@@ -84,6 +84,12 @@ public class ProductoController implements Initializable {
 
         this.tblPinturas.setItems(getAllPaints());
         
+        ObservableList<String> genero = FXCollections.observableArrayList(
+                "M",
+                "F",
+                "O");
+        cmbCategoria.setItems(genero);
+        
     }
 
     /*
@@ -127,9 +133,9 @@ public class ProductoController implements Initializable {
             this.txtNombre.setText(p.getNombre());
             this.txtMarca.setText(p.getMarca());
             this.txtDescripcion.setText(p.getDescripcion());
-            this.cmbCategoria.getSelectionModel().select((int) (Object) p.getCategoria());
-            this.cmbCapacidad.getSelectionModel().select((int) (Object) p.getCapacidad());
-            this.txtPrecio.setText(String.valueOf(p.getPrecio()));
+         this.cmbCategoria.getSelectionModel().select((int) (Object) p.getCategoria());
+//            this.cmbCapacidad.getSelectionModel().select((int) (Object) p.getCapacidad());
+            this.txtPrecio.setText(String.valueOf("$"+p.getPrecio()));
 
         }
     }
