@@ -9,16 +9,20 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javax.swing.Action;
 import org.mc.inventorySystem.core.MySQLConnection;
 import org.mc.inventorySystem.core.model.Pintura;
 
@@ -33,7 +37,7 @@ public class ProductoController implements Initializable {
     @FXML
     private JFXComboBox<String> cmbCategoria;
     @FXML
-    private JFXComboBox<?> cmbCapacidad;
+    private JFXComboBox<String> cmbCapacidad;
     @FXML
     private JFXTextField txtPrecio;
     @FXML
@@ -82,14 +86,24 @@ public class ProductoController implements Initializable {
         pinturasList = FXCollections.observableArrayList();
         filtroPintura = FXCollections.observableArrayList();
 
-        this.tblPinturas.setItems(getAllPaints());
-        
-        ObservableList<String> genero = FXCollections.observableArrayList(
-                "M",
-                "F",
-                "O");
-        cmbCategoria.setItems(genero);
-        
+        getAllPaints();
+
+        ObservableList<String> categorias = FXCollections.observableArrayList(
+                "Vinílicas",
+                "Esmaltes",
+                "Aerosoles",
+                "Texturas y Efectos",
+                "Maderas",
+                "Solventes");
+        cmbCategoria.setItems(categorias);
+
+        ObservableList<String> capacidad = FXCollections.observableArrayList(
+                "400 ml",
+                "1 LT",
+                "4 LT",
+                "19 LT");
+        cmbCapacidad.setItems(capacidad);
+
     }
 
     /*
@@ -119,11 +133,84 @@ public class ProductoController implements Initializable {
                 p = fill(resultSet);
                 pinturasList.add(p);
             }
+
         } catch (SQLException ex) {
             Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        tblPinturas.setItems(pinturasList);
         return pinturasList;
     }
+
+    /*
+    En este método se hace la inserción de Objetos de tipo pintura para los registros
+    podemos hacer diversas inserciones y al realizarse nos dara un Alert donde podremos 
+    ver que la insercion se esta haciendo de manera correcta, en caso de no ser asi recibiremos un 
+    Alert avisandonos que algo salio mal y debemos verificar.
+     */
+    public void insertProduct(ActionEvent event) {
+        String nombre, marca, descripcion, categoria, capacidad;
+        double precio;
+        nombre = txtNombre.getText().toString();
+        marca = txtMarca.getText().toString();
+        descripcion = txtDescripcion.getText().toString();
+        categoria = cmbCategoria.getSelectionModel().getSelectedItem();
+        capacidad = cmbCapacidad.getSelectionModel().getSelectedItem();
+        precio = Double.parseDouble(txtPrecio.getText());
+
+        //Con este objeto abrimos la conexión a la base de datos 
+        connection = MySQLConnection.open();
+
+        //Definimos la consulta SQL que realizara la inserción del registro:
+        String sql = "INSERT INTO pintura(nombre, marca, descripcion, categoria, capacidad, precio)"
+                + "VALUES(?, ?, ?, ?, ?, ?);";
+
+        try {
+            // Con este objeto ejecutaremos la sentencia SQL que realiza la inserción en la tabla. Debemos especificarle que queremos que nos devuelva el ID
+            // que se genera al realizar la inserción del registro.
+            preparedStatement = connection.prepareStatement(sql);
+
+            //Llenamos el valor de cada campo de la consulta SQL definida antes:
+            preparedStatement.setString(1, nombre);
+            preparedStatement.setString(2, marca);
+            preparedStatement.setString(3, descripcion);
+            preparedStatement.setString(4, categoria);
+            preparedStatement.setString(5, capacidad);
+            preparedStatement.setDouble(6, precio);
+
+            preparedStatement.executeUpdate();
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Registro de Pinturas");
+            alert.setHeaderText("Pintura registrada correctamente.");
+            alert.showAndWait();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        tblPinturas.setItems(getAllPaints());
+        clearField();
+    }
+    
+    /*
+    Este método tiene como funcion la limpieza de los campos despúes de ser utilizados, en una 
+    inserción o en una actualizacion o simplemente para mantenerlos listos para cualquiera de estas acciones
+    */
+    
+    public void clearField(){
+        txtNombre.setText("");
+        txtMarca.setText("");
+        txtDescripcion.setText("");
+        cmbCategoria.getSelectionModel().clearSelection();
+        cmbCapacidad.getSelectionModel().clearSelection();
+        txtPrecio.setText("");
+    }
+    
+    /*
+    Este metodo nos ayuda a mostrar el detalle de cada uno de los registros que se encuentran en nuestra 
+    tabla, para asi poder ver mas detenidamente cada uno de sus campos o caracteristicas en el caso de quere eliminarlo o
+    actualizarlo.
+    */
 
     public void showDetailProduct() {
         Pintura p = this.tblPinturas.getSelectionModel().getSelectedItem();
@@ -133,9 +220,9 @@ public class ProductoController implements Initializable {
             this.txtNombre.setText(p.getNombre());
             this.txtMarca.setText(p.getMarca());
             this.txtDescripcion.setText(p.getDescripcion());
-         this.cmbCategoria.getSelectionModel().select((int) (Object) p.getCategoria());
-//            this.cmbCapacidad.getSelectionModel().select((int) (Object) p.getCapacidad());
-            this.txtPrecio.setText(String.valueOf("$"+p.getPrecio()));
+            this.cmbCategoria.getSelectionModel().select(p.getCategoria());
+            this.cmbCapacidad.getSelectionModel().select(p.getCapacidad());
+            this.txtPrecio.setText(String.valueOf("$" + p.getPrecio()));
 
         }
     }

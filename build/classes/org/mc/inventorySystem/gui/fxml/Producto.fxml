@@ -13,8 +13,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="660.0" prefWidth="1100.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="org.mc.inventorySystem.gui.ProductoController">
+<AnchorPane id="AnchorPane" prefHeight="660.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.mc.inventorySystem.gui.ProductoController">
    <children>
       <BorderPane layoutY="-3.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-3.0">
          <top>
@@ -75,7 +74,7 @@
                   <JFXComboBox fx:id="cmbCategoria" layoutX="204.0" layoutY="236.0" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="235.0" />
                   <JFXComboBox fx:id="cmbCapacidad" layoutX="204.0" layoutY="285.0" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="285.0" />
                   <JFXTextField fx:id="txtPrecio" layoutX="213.0" layoutY="336.0" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="335.0" />
-                  <JFXButton fx:id="btnGuardar" layoutX="39.0" layoutY="423.0" prefHeight="29.0" prefWidth="81.0" text="Guardar" textFill="#2196f3" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="423.0">
+                  <JFXButton fx:id="btnGuardar" layoutX="39.0" layoutY="423.0" onAction="#insertProduct" prefHeight="29.0" prefWidth="81.0" text="Guardar" textFill="#2196f3" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="423.0">
                      <graphic>
                         <FontAwesomeIconView fill="#2196f3" glyphName="SAVE" />
                      </graphic>
@@ -99,7 +98,7 @@
                         <Font name="Century Gothic" size="12.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton fx:id="btnNuevo" layoutX="345.0" layoutY="423.0" prefHeight="29.0" prefWidth="94.0" text="Nuevo" textFill="GREEN" AnchorPane.leftAnchor="340.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="423.0">
+                  <JFXButton fx:id="btnNuevo" layoutX="345.0" layoutY="423.0" onAction="#clearField" prefHeight="29.0" prefWidth="94.0" text="Nuevo" textFill="GREEN" AnchorPane.leftAnchor="340.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="423.0">
                      <graphic>
                         <FontAwesomeIconView fill="GREEN" glyphName="EDIT" />
                      </graphic>
