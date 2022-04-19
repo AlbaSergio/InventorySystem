@@ -22,6 +22,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javax.swing.Action;
 import org.mc.inventorySystem.core.MySQLConnection;
 import org.mc.inventorySystem.core.model.Pintura;
@@ -112,15 +113,12 @@ public class ProductoController implements Initializable {
      que el estatus en 1 quiere decir que se encuentrá activo y el 0 es que 
      ya no se encuentra activo dentro del inventario.
      */
-    public ObservableList<Pintura> getAllPaints() {
-        //Definimos la consulta SQL:
-        String sql = "SELECT * FROM pintura WHERE estatus = 1";
-
+    public void getAllPaints() {
         //Aquí guardatemos los objetos de tipo Pintura. Una lista es un contenedor dinámico de objetos.
         ObservableList<Pintura> obp = FXCollections.observableArrayList();
 
-        //Creamos una variable temporal para crear nuevas instancias de Pinturas:
-        Pintura p = null;
+        //Definimos la consulta SQL:
+        String sql = "SELECT * FROM pintura WHERE estatus = 1";
 
         //Con este objeto nos vamos a conectar a la Base de Datos:
         connection = MySQLConnection.open();
@@ -130,15 +128,25 @@ public class ProductoController implements Initializable {
             resultSet = preparedStatement.executeQuery();
             // Recorremos el ResultSet:
             while (resultSet.next()) {
-                p = fill(resultSet);
-                pinturasList.add(p);
+                Pintura p = new Pintura();
+                p.setIdPintura(resultSet.getInt("idPintura"));
+                p.setNombre(resultSet.getString("nombre"));
+                p.setMarca(resultSet.getString("marca"));
+                p.setDescripcion(resultSet.getString("descripcion"));
+                p.setCategoria(resultSet.getString("categoria"));
+                p.setCapacidad(resultSet.getString("capacidad"));
+                p.setPrecio(resultSet.getDouble("precio"));
+                obp.add(p);
             }
 
+            tblPinturas.setItems(obp);
+            
+           pinturasList = obp;
         } catch (SQLException ex) {
             Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        tblPinturas.setItems(pinturasList);
-        return pinturasList;
+        
+      
     }
 
     /*
@@ -188,16 +196,83 @@ public class ProductoController implements Initializable {
             Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        tblPinturas.setItems(getAllPaints());
+        getAllPaints();
         clearField();
     }
-    
+
+    public void deleteProduct(ActionEvent event) throws SQLException {
+        int idDelete = tblPinturas.getSelectionModel().getSelectedIndex();
+        int id = Integer.parseInt(String.valueOf(tblPinturas.getItems().get(idDelete).getIdPintura()));
+
+        //Con este objeto abrimos la conexión a la base de datos 
+        connection = MySQLConnection.open();
+
+        String sql = "UPDATE pintura SET estatus = 0 WHERE idPintura = ?;";
+
+        preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, id);
+        preparedStatement.executeUpdate();
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Registro de Pinturas");
+        alert.setHeaderText("Eliminado");
+        alert.setContentText("¡Se elimino el registro correctamente!");
+        alert.showAndWait();
+
+        getAllPaints();
+        clearField();
+
+    }
+
+    public void updateProduct(ActionEvent event) throws SQLException {
+        String nombre, marca, descripcion, categoria, capacidad;
+        double precio;
+
+        int idDelete = tblPinturas.getSelectionModel().getSelectedIndex();
+        int id = Integer.parseInt(String.valueOf(tblPinturas.getItems().get(idDelete).getIdPintura()));
+
+        nombre = txtNombre.getText().toString();
+        marca = txtMarca.getText().toString();
+        descripcion = txtDescripcion.getText().toString();
+        categoria = cmbCategoria.getSelectionModel().getSelectedItem();
+        capacidad = cmbCapacidad.getSelectionModel().getSelectedItem();
+        precio = Double.parseDouble(txtPrecio.getText());
+
+        //Definimos la consulta SQL que realiza la inserción del registro:
+        String sql = "UPDATE pintura SET nombre = ?, marca = ?, descripcion = ?,"
+                + " categoria = ?, capacidad = ?, precio = ? WHERE idPintura = ?";
+
+        // Con este objeto ejecutaremos la sentencia SQL que realiza la inserción en la tabla. Debemos especificarle que queremos que nos devuelva el ID
+        // que se genera al realizar la inserción del registro.
+        preparedStatement = connection.prepareStatement(sql);
+
+        //Llenamos el valor de cada campo de la consulta SQL definida antes:
+        preparedStatement.setString(1, nombre);
+        preparedStatement.setString(2, marca);
+        preparedStatement.setString(3, descripcion);
+        preparedStatement.setString(4, categoria);
+        preparedStatement.setString(5, capacidad);
+        preparedStatement.setDouble(6, precio);
+        preparedStatement.setInt(7, id);
+        preparedStatement.executeUpdate();
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Registro de Pinturas");
+
+        alert.setHeaderText("Actualizado");
+        alert.setContentText("¡Se actualizo correctamente el registro!");
+
+        alert.showAndWait();
+
+        getAllPaints();
+        clearField();
+    }
+
     /*
     Este método tiene como funcion la limpieza de los campos despúes de ser utilizados, en una 
     inserción o en una actualizacion o simplemente para mantenerlos listos para cualquiera de estas acciones
-    */
-    
-    public void clearField(){
+     */
+    public void clearField() {
         txtNombre.setText("");
         txtMarca.setText("");
         txtDescripcion.setText("");
@@ -205,13 +280,12 @@ public class ProductoController implements Initializable {
         cmbCapacidad.getSelectionModel().clearSelection();
         txtPrecio.setText("");
     }
-    
+
     /*
     Este metodo nos ayuda a mostrar el detalle de cada uno de los registros que se encuentran en nuestra 
     tabla, para asi poder ver mas detenidamente cada uno de sus campos o caracteristicas en el caso de quere eliminarlo o
     actualizarlo.
-    */
-
+     */
     public void showDetailProduct() {
         Pintura p = this.tblPinturas.getSelectionModel().getSelectedItem();
 
@@ -222,9 +296,32 @@ public class ProductoController implements Initializable {
             this.txtDescripcion.setText(p.getDescripcion());
             this.cmbCategoria.getSelectionModel().select(p.getCategoria());
             this.cmbCapacidad.getSelectionModel().select(p.getCapacidad());
-            this.txtPrecio.setText(String.valueOf("$" + p.getPrecio()));
+            this.txtPrecio.setText(String.valueOf(p.getPrecio()));
 
         }
+    }
+    
+    @FXML
+    private void txtBuscar(KeyEvent event) {
+
+        String filtro = this.txtBuscar.getText();
+
+        if (filtro.isEmpty()) {
+            this.tblPinturas.setItems(pinturasList);
+        } else {
+            //Limpiamos la lista
+            this.filtroPintura.clear();
+
+            for (Pintura p : this.pinturasList) {
+                if (p.getNombre().contains(filtro) || p.getMarca().contains(filtro) ||  p.getCategoria().contains(filtro)) {
+
+                    this.filtroPintura.add(p);
+                }
+            }
+
+            this.tblPinturas.setItems(filtroPintura);
+        }
+
     }
 
     /**
