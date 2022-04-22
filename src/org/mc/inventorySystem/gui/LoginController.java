@@ -24,6 +24,10 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.mc.inventorySystem.core.MySQLConnection;
@@ -35,20 +39,23 @@ import org.mc.inventorySystem.core.MySQLConnection;
  */
 public class LoginController implements Initializable {
 
-    @FXML
+   @FXML
     private AnchorPane anchor;
 
     @FXML
-    private JFXTextField txtUsuario;
+    private ImageView imgLog;
 
     @FXML
-    private JFXPasswordField txtPassword;
+    private TextField txtUsuario;
 
     @FXML
-    private JFXButton btnAcceder;
+    private PasswordField txtPassword;
 
     @FXML
-    private JFXButton btnSalir;
+    private Button btnAcceder;
+
+    @FXML
+    private Button btnSalir;
 
     Stage dialogStage = new Stage();
     Scene scene;
@@ -87,7 +94,7 @@ public class LoginController implements Initializable {
                 Node source = (Node) event.getSource();
                 dialogStage = (Stage) source.getScene().getWindow();
                 dialogStage.close();
-                scene = new Scene(FXMLLoader.load(getClass().getResource("/org/mc/inventorySystem/gui/fxml/Producto.fxml")));
+                scene = new Scene(FXMLLoader.load(getClass().getResource("/org/mc/inventorySystem/gui/fxml/Principal.fxml")));
                 dialogStage.setScene(scene);
                 dialogStage.show();
             }

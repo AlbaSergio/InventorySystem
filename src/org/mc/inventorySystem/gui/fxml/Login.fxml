@@ -1,95 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXPasswordField?>
-<?import com.jfoenix.controls.JFXTextField?>
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" fx:id="anchor" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.mc.inventorySystem.gui.LoginController">
+<AnchorPane id="AnchorPane" fx:id="anchor" prefHeight="555.0" prefWidth="796.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.mc.inventorySystem.gui.LoginController">
    <children>
-      <GridPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="319.0" minWidth="10.0" prefWidth="313.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="287.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="415.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox alignment="BASELINE_LEFT" prefHeight="400.0" prefWidth="316.0">
-               <children>
-                  <Label alignment="TOP_CENTER" text="Iniciar Sesión">
-                     <VBox.margin>
-                        <Insets top="30.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font name="Century Gothic Bold" size="22.0" />
-                     </font>
-                  </Label>
-                  <JFXTextField fx:id="txtUsuario" alignment="CENTER" labelFloat="true" promptText="Usuario">
-                     <VBox.margin>
-                        <Insets left="30.0" right="10.0" top="30.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font name="Century Gothic" size="12.0" />
-                     </font>
-                  </JFXTextField>
-                  <FontAwesomeIconView glyphName="USER" size="20">
-                     <VBox.margin>
-                        <Insets top="-15.0" />
-                     </VBox.margin>
-                  </FontAwesomeIconView>
-                  <JFXPasswordField fx:id="txtPassword" alignment="CENTER" labelFloat="true" promptText="Password">
-                     <VBox.margin>
-                        <Insets left="30.0" right="10.0" top="35.0" />
-                     </VBox.margin>
-                  </JFXPasswordField>
-                  <FontAwesomeIconView glyphName="LOCK" size="20">
-                     <VBox.margin>
-                        <Insets top="-13.0" />
-                     </VBox.margin>
-                  </FontAwesomeIconView>
-                  <JFXButton fx:id="btnAcceder" onAction="#login" text="Acceder">
-                     <VBox.margin>
-                        <Insets top="30.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font name="Century Gothic Bold" size="14.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton fx:id="btnSalir" onAction="#out" text="Salir">
-                     <VBox.margin>
-                        <Insets top="25.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font name="Century Gothic Bold" size="14.0" />
-                     </font>
-                  </JFXButton>
-               </children>
-            </VBox>
-            <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="283.0" GridPane.columnIndex="1">
-               <children>
-                  <ImageView fx:id="imgLog" fitHeight="408.0" fitWidth="277.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../res/botes-de-pintura-11551061657jemtzembfc.png" />
-                     </image>
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </ImageView>
-               </children>
-            </VBox>
+            <ImageView fx:id="imgLog" fitHeight="194.0" fitWidth="194.0" layoutX="84.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../res/cyver-960x619.jpg" />
+               </image>
+            </ImageView>
          </children>
-      </GridPane>
+      </AnchorPane>
+      <AnchorPane layoutX="540.0" layoutY="34.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #6FB1FC;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="380.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Text layoutX="95.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenido" AnchorPane.bottomAnchor="442.8701171875" AnchorPane.leftAnchor="94.41796875" AnchorPane.rightAnchor="72.58203125" AnchorPane.topAnchor="55.73046875">
+               <font>
+                  <Font name="Century Gothic Bold" size="46.0" />
+               </font>
+            </Text>
+            <Text layoutX="169.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario">
+               <font>
+                  <Font name="Century Gothic Bold" size="21.0" />
+               </font>
+            </Text>
+            <Text layoutX="152.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña">
+               <font>
+                  <Font name="Century Gothic Bold" size="21.0" />
+               </font>
+            </Text>
+            <TextField fx:id="txtUsuario" layoutX="58.0" layoutY="224.0" prefHeight="33.0" prefWidth="304.0" promptText="Ingrese su nombre de usuario" />
+            <Button fx:id="btnAcceder" layoutX="130.0" layoutY="378.0" mnemonicParsing="false" onAction="#login" prefHeight="41.0" prefWidth="172.0" text="Iniciar Sesión">
+               <font>
+                  <Font name="Century Gothic" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnSalir" layoutX="130.0" layoutY="450.0" mnemonicParsing="false" onAction="#out" prefHeight="41.0" prefWidth="172.0" text="Salir">
+               <font>
+                  <Font name="Century Gothic" size="15.0" />
+               </font>
+            </Button>
+            <PasswordField fx:id="txtPassword" layoutX="58.0" layoutY="311.0" prefHeight="33.0" prefWidth="304.0" promptText="Ingrese su contraseña" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

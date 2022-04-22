@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,12 +18,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
 import javax.swing.Action;
 import org.mc.inventorySystem.core.MySQLConnection;
 import org.mc.inventorySystem.core.model.Pintura;
@@ -49,6 +55,8 @@ public class ProductoController implements Initializable {
     private JFXButton btnEliminar;
     @FXML
     private JFXButton btnNuevo;
+    @FXML
+    private Button btnPrincipal;
     @FXML
     private JFXTextField txtBuscar;
     @FXML
@@ -140,13 +148,12 @@ public class ProductoController implements Initializable {
             }
 
             tblPinturas.setItems(obp);
-            
-           pinturasList = obp;
+
+            pinturasList = obp;
         } catch (SQLException ex) {
             Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-      
+
     }
 
     /*
@@ -200,6 +207,12 @@ public class ProductoController implements Initializable {
         clearField();
     }
 
+    /*
+    Este método tiene como función principal llevar a cabo eliminaciones lógicas, es decir que
+    no se quitan fisicamente de la base de datos lo que se hace es un UPDATE de el campo estatus
+    ya que se encuentra en 1 que quiere decir que esta activo, al eliminarlo cambiamos su estatus 
+    a 0 que quiere decir que esta inactivo o descontinuado.
+     */
     public void deleteProduct(ActionEvent event) throws SQLException {
         int idDelete = tblPinturas.getSelectionModel().getSelectedIndex();
         int id = Integer.parseInt(String.valueOf(tblPinturas.getItems().get(idDelete).getIdPintura()));
@@ -224,6 +237,10 @@ public class ProductoController implements Initializable {
 
     }
 
+    /*
+    Este método tiene como función principal llevar a cabo actualizaciones en los registros 
+    que se encuentren en nustra base de datos, tomando como referencia el id del regiss
+     */
     public void updateProduct(ActionEvent event) throws SQLException {
         String nombre, marca, descripcion, categoria, capacidad;
         double precio;
@@ -300,7 +317,7 @@ public class ProductoController implements Initializable {
 
         }
     }
-    
+
     @FXML
     private void txtBuscar(KeyEvent event) {
 
@@ -313,7 +330,7 @@ public class ProductoController implements Initializable {
             this.filtroPintura.clear();
 
             for (Pintura p : this.pinturasList) {
-                if (p.getNombre().contains(filtro) || p.getMarca().contains(filtro) ||  p.getCategoria().contains(filtro)) {
+                if (p.getNombre().contains(filtro) || p.getMarca().contains(filtro) || p.getCategoria().contains(filtro)) {
 
                     this.filtroPintura.add(p);
                 }
@@ -347,5 +364,55 @@ public class ProductoController implements Initializable {
 
         // Devolvemos el objeto de tipo pintura:
         return p;
+    }
+    
+    public void backToPrincipal(){
+        
+        try {
+            // Cargo la vista
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/mc/inventorySystem/gui/fxml/Principal.fxml"));
+
+            // Cargo el padre
+            Parent root = loader.load();
+
+            // Obtengo el controlador
+            PrincipalController controlador = loader.getController();
+
+            // Creo la scene y el stage
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+
+            // Asocio el stage con el scene
+            stage.setScene(scene);
+            stage.show();
+
+            // Indico que debe hacer al cerrar
+            stage.setOnCloseRequest(e -> controlador.closeWindows());
+            //Ciero la ventana donde estoy
+            Stage myStage = (Stage) this.btnPrincipal.getScene().getWindow();
+            myStage.close();
+        } catch (IOException ex) {
+            Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    /*Botones para Cerrar ventana*/
+    public void closeWindows() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/mc/inventorySystem/gui/fxml/Principal.fxml"));
+
+            Parent root = loader.load();
+
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+
+            stage.setScene(scene);
+            stage.show();
+
+            Stage myStage = (Stage) this.btnPrincipal.getScene().getWindow();
+            myStage.close();
+        } catch (IOException ex) {
+            Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
