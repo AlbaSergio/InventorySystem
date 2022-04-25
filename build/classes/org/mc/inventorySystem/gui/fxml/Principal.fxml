@@ -24,13 +24,13 @@
                </font>
             </Button>
             <FontAwesomeIconView glyphName="BOOK" layoutX="61.0" layoutY="175.0" size="18" />
-            <Button fx:id="btnVentas" layoutX="71.0" layoutY="229.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="90.0" style="-fx-background-color: none;" text="Venta">
+            <Button fx:id="btnVentas" layoutX="71.0" layoutY="229.0" mnemonicParsing="false" onAction="#openSales" prefHeight="45.0" prefWidth="90.0" style="-fx-background-color: none;" text="Venta">
                <font>
                   <Font name="Century Gothic Bold" size="21.0" />
                </font>
             </Button>
             <FontAwesomeIconView glyphName="MONEY" layoutX="63.0" layoutY="258.0" size="18" wrappingWidth="18.803575336933136" />
-            <Button fx:id="btnUsuarios" layoutX="77.0" layoutY="316.0" mnemonicParsing="false" style="-fx-background-color: none;" text="Usuarios">
+            <Button fx:id="btnUsuarios" layoutX="77.0" layoutY="316.0" mnemonicParsing="false" onAction="#openUsers" style="-fx-background-color: none;" text="Usuarios">
                <font>
                   <Font name="Century Gothic Bold" size="21.0" />
                </font>

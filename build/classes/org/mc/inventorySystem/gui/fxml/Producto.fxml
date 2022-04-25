@@ -1,144 +1,119 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXComboBox?>
-<?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="660.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.mc.inventorySystem.gui.ProductoController">
+<AnchorPane id="AnchorPane" prefHeight="678.0" prefWidth="985.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.mc.inventorySystem.gui.ProductoController">
    <children>
-      <BorderPane layoutY="-3.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-3.0">
-         <top>
-            <AnchorPane prefHeight="60.0" prefWidth="1100.0" BorderPane.alignment="CENTER">
-               <children>
-                  <ImageView fitHeight="57.0" fitWidth="60.0" layoutX="24.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="805.0" AnchorPane.topAnchor="4.0" />
-                  <Label alignment="CENTER" layoutX="700.0" layoutY="17.0" text="Pinturas" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="6.0">
-                     <font>
-                        <Font name="Century Gothic Bold" size="36.0" />
-                     </font>
-                     <graphic>
-                        <FontAwesomeIconView glyphName="BOOK" size="23" />
-                     </graphic>
-                  </Label>
-               </children>
-            </AnchorPane>
-         </top>
-         <left>
-            <AnchorPane prefHeight="600.0" prefWidth="464.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Label alignment="CENTER" layoutX="11.0" layoutY="75.0" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: #7FB3D5;" text="Nombre:" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="85.0">
-                     <font>
-                        <Font name="Century Gothic Bold" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" layoutX="65.0" layoutY="428.0" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: #7FB3D5;" text="Precio:" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="335.0">
-                     <font>
-                        <Font name="Century Gothic Bold" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" layoutX="64.0" layoutY="383.0" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: #7FB3D5;" text="Capacidad:" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="285.0">
-                     <font>
-                        <Font name="Century Gothic Bold" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" layoutX="47.0" layoutY="270.0" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: #7FB3D5;" text="Categoría:" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="235.0">
-                     <font>
-                        <Font name="Century Gothic Bold" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" layoutX="55.0" layoutY="312.0" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: #7FB3D5;" text="Descripción:" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="185.0">
-                     <font>
-                        <Font name="Century Gothic Bold" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" layoutX="44.0" layoutY="138.0" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: #7FB3D5;" text="Marca:" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="135.0">
-                     <font>
-                        <Font name="Century Gothic Bold" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="173.0" layoutY="33.0" text="Detalle Producto" AnchorPane.leftAnchor="125.0" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="25.0">
-                     <font>
-                        <Font name="Century Gothic Bold" size="24.0" />
-                     </font>
-                  </Label>
-                  <JFXTextField fx:id="txtNombre" layoutX="92.0" layoutY="73.0" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="85.0" />
-                  <JFXTextField fx:id="txtMarca" layoutX="213.0" layoutY="136.0" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="135.0" />
-                  <JFXComboBox fx:id="cmbCategoria" layoutX="204.0" layoutY="236.0" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="235.0" />
-                  <JFXComboBox fx:id="cmbCapacidad" layoutX="204.0" layoutY="285.0" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="285.0" />
-                  <JFXTextField fx:id="txtPrecio" layoutX="213.0" layoutY="336.0" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="335.0" />
-                  <JFXButton fx:id="btnGuardar" layoutX="39.0" layoutY="423.0" onAction="#insertProduct" prefHeight="29.0" prefWidth="81.0" text="Guardar" textFill="#2196f3" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="423.0">
-                     <graphic>
-                        <FontAwesomeIconView fill="#2196f3" glyphName="SAVE" />
-                     </graphic>
-                     <font>
-                        <Font name="Century Gothic" size="12.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton fx:id="btnModificar" layoutX="155.0" layoutY="423.0" onAction="#updateProduct" prefHeight="29.0" prefWidth="94.0" text="Modificar" textFill="#ff970a" AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="230.0" AnchorPane.topAnchor="423.0">
-                     <graphic>
-                        <FontAwesomeIconView fill="#ff970a" glyphName="RETWEET" />
-                     </graphic>
-                     <font>
-                        <Font name="Century Gothic" size="12.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton fx:id="btnEliminar" layoutX="259.0" layoutY="423.0" onAction="#deleteProduct" prefHeight="29.0" prefWidth="94.0" text="Eliminar" textFill="#ff0a0a" AnchorPane.leftAnchor="240.0" AnchorPane.rightAnchor="130.0" AnchorPane.topAnchor="423.0">
-                     <graphic>
-                        <FontAwesomeIconView fill="#ff0a0a" glyphName="TRASH" />
-                     </graphic>
-                     <font>
-                        <Font name="Century Gothic" size="12.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton fx:id="btnNuevo" layoutX="345.0" layoutY="423.0" onAction="#clearField" prefHeight="29.0" prefWidth="94.0" text="Nuevo" textFill="GREEN" AnchorPane.leftAnchor="340.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="423.0">
-                     <graphic>
-                        <FontAwesomeIconView fill="GREEN" glyphName="EDIT" />
-                     </graphic>
-                     <font>
-                        <Font name="Century Gothic" size="12.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXTextArea fx:id="txtDescripcion" layoutX="187.0" layoutY="174.0" prefHeight="43.0" prefWidth="270.0" AnchorPane.bottomAnchor="461.0" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="174.0" />
-                  <Button fx:id="btnPrincipal" layoutX="55.0" layoutY="605.0" mnemonicParsing="false" onAction="#backToPrincipal" text="Volver al Menú" />
-               </children>
-            </AnchorPane>
-         </left>
-         <right>
-            <AnchorPane prefHeight="600.0" prefWidth="660.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Label alignment="CENTER" layoutX="86.0" layoutY="39.0" prefHeight="35.0" prefWidth="119.0" text="Catálogo" AnchorPane.leftAnchor="304.0" AnchorPane.rightAnchor="237.0" AnchorPane.topAnchor="25.0">
-                     <font>
-                        <Font name="Century Gothic Bold" size="24.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" layoutX="38.0" layoutY="93.0" maxWidth="113.0" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #7FB3D5;" text="Buscar" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="567.0" AnchorPane.topAnchor="93.0" />
-                  <JFXTextField fx:id="txtBuscar" layoutX="190.0" layoutY="92.0" onKeyReleased="#txtBuscar" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="91.0" />
-                  <AnchorPane layoutX="204.0" layoutY="198.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="130.0">
-                     <children>
-                        <TableView fx:id="tblPinturas" layoutX="33.0" layoutY="33.0" onMouseClicked="#showDetailProduct" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                          <columns>
-                            <TableColumn fx:id="colNombre" prefWidth="75.0" text="Nombre" />
-                            <TableColumn fx:id="colMarca" prefWidth="75.0" text="Marca" />
-                              <TableColumn fx:id="colDescripcion" prefWidth="75.0" text="Descripción" />
-                              <TableColumn fx:id="colCategoria" prefWidth="75.0" text="Catregoría" />
-                              <TableColumn fx:id="colCapacidad" prefWidth="75.0" text="Capacidad" />
-                              <TableColumn fx:id="colPrecio" prefWidth="75.0" text="Precio" />
-                          </columns>
-                        </TableView>
-                     </children>
-                  </AnchorPane>
-               </children>
-            </AnchorPane>
-         </right>
-      </BorderPane>
+      <AnchorPane layoutY="27.0" prefHeight="651.0" prefWidth="348.0" style="-fx-background-color: #6FB1FC;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Text layoutX="17.0" layoutY="365.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categoría:">
+               <font>
+                  <Font name="Century Gothic Bold" size="17.0" />
+               </font>
+            </Text>
+            <Text layoutX="50.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Detalle Producto">
+               <font>
+                  <Font name="Century Gothic Bold" size="27.0" />
+               </font>
+            </Text>
+            <Text layoutX="21.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre:">
+               <font>
+                  <Font name="Century Gothic Bold" size="17.0" />
+               </font>
+            </Text>
+            <TextField fx:id="txtNombre" layoutX="17.0" layoutY="107.0" prefHeight="25.0" prefWidth="315.0" />
+            <Text layoutX="21.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Marca:">
+               <font>
+                  <Font name="Century Gothic Bold" size="17.0" />
+               </font>
+            </Text>
+            <TextField fx:id="txtMarca" layoutX="17.0" layoutY="174.0" prefHeight="25.0" prefWidth="315.0" />
+            <Text layoutX="17.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción:">
+               <font>
+                  <Font name="Century Gothic Bold" size="17.0" />
+               </font>
+            </Text>
+            <TextArea fx:id="txtDescripcion" layoutX="17.0" layoutY="241.0" prefHeight="100.0" prefWidth="315.0" />
+            <ComboBox fx:id="cmbCategoria" layoutX="17.0" layoutY="379.0" prefWidth="315.0" />
+            <ComboBox fx:id="cmbCapacidad" layoutX="17.0" layoutY="446.0" prefWidth="315.0" />
+            <Text layoutX="17.0" layoutY="432.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Capacidad:">
+               <font>
+                  <Font name="Century Gothic Bold" size="17.0" />
+               </font>
+            </Text>
+            <Text layoutX="17.0" layoutY="495.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Precio:">
+               <font>
+                  <Font name="Century Gothic Bold" size="17.0" />
+               </font>
+            </Text>
+            <TextField fx:id="txtPrecio" layoutX="17.0" layoutY="504.0" prefHeight="25.0" prefWidth="315.0" />
+            <Button fx:id="btnGuardar" layoutX="17.0" layoutY="550.0" mnemonicParsing="false" onAction="#insertProduct" prefHeight="35.0" prefWidth="118.0" style="-fx-background-color: #2196f3;" text="Guardar">
+               <font>
+                  <Font name="Century Gothic Bold" size="14.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView glyphName="SAVE" size="13.0" />
+               </graphic>
+            </Button>
+            <Button fx:id="btnModificar" layoutX="17.0" layoutY="613.0" mnemonicParsing="false" onAction="#updateProduct" prefHeight="35.0" prefWidth="118.0" style="-fx-background-color: WHITE;" text="Modificar">
+               <font>
+                  <Font name="Century Gothic Bold" size="14.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView glyphName="RETWEET" size="13" />
+               </graphic>
+            </Button>
+            <Button fx:id="btnNuevo" layoutX="215.0" layoutY="615.0" mnemonicParsing="false" onAction="#clearField" prefHeight="35.0" prefWidth="118.0" style="-fx-background-color: GREEN;" text="Nuevo">
+               <font>
+                  <Font name="Century Gothic Bold" size="14.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView glyphName="EDIT" size="13.0" />
+               </graphic>
+            </Button>
+            <Button fx:id="btnEliminar" layoutX="215.0" layoutY="553.0" mnemonicParsing="false" onAction="#deleteProduct" prefHeight="35.0" prefWidth="118.0" style="-fx-background-color: #C40404;" text="Eliminar">
+               <font>
+                  <Font name="Century Gothic Bold" size="14.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView glyphName="TRASH" size="13" />
+               </graphic>
+            </Button>
+         </children>
+      </AnchorPane>
+      <JFXTextField fx:id="txtBuscar" layoutX="456.0" layoutY="27.0" onKeyReleased="#txtBuscar" prefHeight="25.0" prefWidth="517.0" AnchorPane.leftAnchor="456.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="27.0" />
+      <Button fx:id="btnPrincipal" layoutX="867.0" layoutY="628.0" mnemonicParsing="false" onAction="#backToPrincipal" text="Volver al Menú">
+         <font>
+            <Font name="Century Gothic Bold" size="12.0" />
+         </font></Button>
+      <TableView fx:id="tblPinturas" layoutX="367.0" layoutY="70.0" onMouseClicked="#showDetailProduct" prefHeight="551.0" prefWidth="607.0">
+        <columns>
+          <TableColumn fx:id="colNombre" prefWidth="100.33331298828125" text="Nombre" />
+          <TableColumn fx:id="colMarca" prefWidth="82.0" text="Marca" />
+            <TableColumn fx:id="colDescripcion" prefWidth="158.0" text="Descripción" />
+            <TableColumn fx:id="colCategoria" prefWidth="105.3333740234375" text="Categoría" />
+            <TableColumn fx:id="colCapacidad" prefWidth="63.6666259765625" text="Capacidad" />
+            <TableColumn fx:id="colPrecio" prefWidth="97.0" text="Precio" />
+        </columns>
+      </TableView>
+      <Label layoutX="367.0" layoutY="33.0" style="-fx-background-color: #6FB1FC;" text="Buscar:">
+         <font>
+            <Font name="Century Gothic Bold" size="18.0" />
+         </font>
+         <graphic>
+            <FontAwesomeIconView glyphName="SEARCH" size="15" />
+         </graphic>
+      </Label>
    </children>
 </AnchorPane>

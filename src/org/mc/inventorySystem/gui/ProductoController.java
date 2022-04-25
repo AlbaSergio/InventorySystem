@@ -24,8 +24,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
@@ -35,42 +38,101 @@ import org.mc.inventorySystem.core.model.Pintura;
 
 public class ProductoController implements Initializable {
 
+//    @FXML
+//    private JFXTextField txtNombre;
+//    @FXML
+//    private JFXTextField txtMarca;
+//    @FXML
+//    private JFXTextArea txtDescripcion;
+//    @FXML
+//    private JFXComboBox<String> cmbCategoria;
+//    @FXML
+//    private JFXComboBox<String> cmbCapacidad;
+//    @FXML
+//    private JFXTextField txtPrecio;
+//    @FXML
+//    private JFXButton btnGuardar;
+//    @FXML
+//    private JFXButton btnModificar;
+//    @FXML
+//    private JFXButton btnEliminar;
+//    @FXML
+//    private JFXButton btnNuevo;
+//    @FXML
+//    private Button btnPrincipal;
+//    @FXML
+//    private JFXTextField txtBuscar;
+//    @FXML
+//    private TableView<Pintura> tblPinturas;
+//    @FXML
+//    private TableColumn<Pintura, String> colNombre;
+//    @FXML
+//    private TableColumn<Pintura, String> colMarca;
+//    @FXML
+//    private TableColumn<Pintura, String> colDescripcion;
+//    @FXML
+//    private TableColumn<Pintura, String> colCategoria;
+//    @FXML
+//    private TableColumn<Pintura, String> colCapacidad;
+//    @FXML
+//    private TableColumn<Pintura, ?> colPrecio;
+    
+    
+    
     @FXML
-    private JFXTextField txtNombre;
+    private TextField txtNombre;
+
     @FXML
-    private JFXTextField txtMarca;
+    private TextField txtMarca;
+
     @FXML
-    private JFXTextArea txtDescripcion;
+    private TextArea txtDescripcion;
+
     @FXML
-    private JFXComboBox<String> cmbCategoria;
+    private ComboBox<String> cmbCategoria;
+
     @FXML
-    private JFXComboBox<String> cmbCapacidad;
+    private ComboBox<String> cmbCapacidad;
+
     @FXML
-    private JFXTextField txtPrecio;
+    private TextField txtPrecio;
+
     @FXML
-    private JFXButton btnGuardar;
+    private Button btnGuardar;
+
     @FXML
-    private JFXButton btnModificar;
+    private Button btnModificar;
+
     @FXML
-    private JFXButton btnEliminar;
+    private Button btnNuevo;
+
     @FXML
-    private JFXButton btnNuevo;
-    @FXML
-    private Button btnPrincipal;
+    private Button btnEliminar;
+
     @FXML
     private JFXTextField txtBuscar;
+
+    @FXML
+    private Button btnPrincipal;
+
     @FXML
     private TableView<Pintura> tblPinturas;
+
     @FXML
     private TableColumn<Pintura, String> colNombre;
+
     @FXML
     private TableColumn<Pintura, String> colMarca;
+
     @FXML
     private TableColumn<Pintura, String> colDescripcion;
+
     @FXML
     private TableColumn<Pintura, String> colCategoria;
+
     @FXML
     private TableColumn<Pintura, String> colCapacidad;
+
     @FXML
     private TableColumn<Pintura, ?> colPrecio;
 
