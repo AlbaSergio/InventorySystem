@@ -36,7 +36,7 @@
                </font>
             </Button>
             <FontAwesomeIconView glyphName="USERS" layoutX="63.0" layoutY="343.0" size="18" />
-            <Button fx:id="btnSalir" layoutX="77.0" layoutY="401.0" mnemonicParsing="false" style="-fx-background-color: none;" text="Salir">
+            <Button fx:id="btnSalir" layoutX="77.0" layoutY="401.0" mnemonicParsing="false" onAction="#backToPrincipal" style="-fx-background-color: none;" text="Salir">
                <font>
                   <Font name="Century Gothic Bold" size="21.0" />
                </font>

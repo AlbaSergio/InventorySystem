@@ -1,8 +1,5 @@
 package org.mc.inventorySystem.gui;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
@@ -10,7 +7,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,53 +28,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import javax.swing.Action;
 import org.mc.inventorySystem.core.MySQLConnection;
 import org.mc.inventorySystem.core.model.Pintura;
 
 public class ProductoController implements Initializable {
-
-//    @FXML
-//    private JFXTextField txtNombre;
-//    @FXML
-//    private JFXTextField txtMarca;
-//    @FXML
-//    private JFXTextArea txtDescripcion;
-//    @FXML
-//    private JFXComboBox<String> cmbCategoria;
-//    @FXML
-//    private JFXComboBox<String> cmbCapacidad;
-//    @FXML
-//    private JFXTextField txtPrecio;
-//    @FXML
-//    private JFXButton btnGuardar;
-//    @FXML
-//    private JFXButton btnModificar;
-//    @FXML
-//    private JFXButton btnEliminar;
-//    @FXML
-//    private JFXButton btnNuevo;
-//    @FXML
-//    private Button btnPrincipal;
-//    @FXML
-//    private JFXTextField txtBuscar;
-//    @FXML
-//    private TableView<Pintura> tblPinturas;
-//    @FXML
-//    private TableColumn<Pintura, String> colNombre;
-//    @FXML
-//    private TableColumn<Pintura, String> colMarca;
-//    @FXML
-//    private TableColumn<Pintura, String> colDescripcion;
-//    @FXML
-//    private TableColumn<Pintura, String> colCategoria;
-//    @FXML
-//    private TableColumn<Pintura, String> colCapacidad;
-//    @FXML
-//    private TableColumn<Pintura, ?> colPrecio;
-    
-    
-    
     @FXML
     private TextField txtNombre;
 
@@ -342,7 +295,7 @@ public class ProductoController implements Initializable {
         alert.setContentText("¡Se actualizo correctamente el registro!");
 
         alert.showAndWait();
-
+        System.out.println(id);
         getAllPaints();
         clearField();
     }

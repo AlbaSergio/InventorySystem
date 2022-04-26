@@ -57,7 +57,7 @@
                   <Font name="Century Gothic Bold" size="17.0" />
                </font>
             </Text>
-            <TextField fx:id="txtPrecio" layoutX="17.0" layoutY="504.0" prefHeight="25.0" prefWidth="315.0" />
+            <TextField fx:id="txtPrecio" layoutX="17.0" layoutY="504.0" prefHeight="25.0" prefWidth="315.0" promptText="Este campo solo acepta números" />
             <Button fx:id="btnGuardar" layoutX="17.0" layoutY="550.0" mnemonicParsing="false" onAction="#insertProduct" prefHeight="35.0" prefWidth="118.0" style="-fx-background-color: #2196f3;" text="Guardar">
                <font>
                   <Font name="Century Gothic Bold" size="14.0" />

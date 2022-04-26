@@ -34,13 +34,11 @@ public class PrincipalController implements Initializable {
 
     @FXML
     private Button btnUsuarios;
-    
-    
+
     @FXML
     private Button btnSalir;
-    
-    public void openProducts(ActionEvent event)
-    {
+
+    public void openProducts(ActionEvent event) {
         try {
             // Cargo la vista
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/mc/inventorySystem/gui/fxml/Producto.fxml"));
@@ -68,9 +66,8 @@ public class PrincipalController implements Initializable {
             Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-     public void openSales(ActionEvent event)
-    {
+
+    public void openSales(ActionEvent event) {
         try {
             // Cargo la vista
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/mc/inventorySystem/gui/fxml/Venta.fxml"));
@@ -98,10 +95,8 @@ public class PrincipalController implements Initializable {
             Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-     
-      public void openUsers(ActionEvent event)
-    {
+
+    public void openUsers(ActionEvent event) {
         try {
             // Cargo la vista
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/mc/inventorySystem/gui/fxml/Usuario.fxml"));
@@ -129,8 +124,13 @@ public class PrincipalController implements Initializable {
             Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-      
-     public void closeWindows() {
+
+    public void backToPrincipal() {
+        Stage closeWindow = (Stage) btnSalir.getScene().getWindow();
+        closeWindow.close();
+    }
+
+    public void closeWindows() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/mc/inventorySystem/gui/fxml/Login.fxml"));
 
@@ -153,6 +153,6 @@ public class PrincipalController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
+    }
+
 }

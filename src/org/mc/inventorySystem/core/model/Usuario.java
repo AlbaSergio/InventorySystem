@@ -18,8 +18,9 @@ public class Usuario {
     private String nombreUsuario;
     private String contrasenia;
     private String rol;
+    private int estatus;
 
-    public Usuario(int idUsuario, String nombre, String apellidoPaterno, String apellidoMaterno, String nombreUsuario, String contrasenia, String rol) {
+    public Usuario(int idUsuario, String nombre, String apellidoPaterno, String apellidoMaterno, String nombreUsuario, String contrasenia, String rol, int estatus) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
@@ -27,7 +28,9 @@ public class Usuario {
         this.nombreUsuario = nombreUsuario;
         this.contrasenia = contrasenia;
         this.rol = rol;
-    }
+        this.estatus = estatus;
+    }   
+    
 
     public Usuario() {
     }
@@ -130,6 +133,20 @@ public class Usuario {
      */
     public void setRol(String rol) {
         this.rol = rol;
+    }
+
+    /**
+     * @return the estatus
+     */
+    public int getEstatus() {
+        return estatus;
+    }
+
+    /**
+     * @param estatus the estatus to set
+     */
+    public void setEstatus(int estatus) {
+        this.estatus = estatus;
     }
     
     
