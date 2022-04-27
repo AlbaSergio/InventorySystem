@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -22,22 +23,22 @@
       </AnchorPane>
       <AnchorPane layoutX="540.0" layoutY="34.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #6FB1FC;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="380.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Text layoutX="95.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenido" AnchorPane.bottomAnchor="442.8701171875" AnchorPane.leftAnchor="94.41796875" AnchorPane.rightAnchor="72.58203125" AnchorPane.topAnchor="55.73046875">
+            <Text layoutX="94.41796875" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenido" AnchorPane.bottomAnchor="470.8701171875" AnchorPane.leftAnchor="94.41796875" AnchorPane.rightAnchor="73.1640625" AnchorPane.topAnchor="27.73046875">
                <font>
                   <Font name="Century Gothic Bold" size="46.0" />
                </font>
             </Text>
-            <Text layoutX="169.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario">
+            <Text layoutX="169.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario">
                <font>
                   <Font name="Century Gothic Bold" size="21.0" />
                </font>
             </Text>
-            <Text layoutX="152.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña">
+            <Text layoutX="152.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña">
                <font>
                   <Font name="Century Gothic Bold" size="21.0" />
                </font>
             </Text>
-            <TextField fx:id="txtUsuario" layoutX="58.0" layoutY="224.0" prefHeight="33.0" prefWidth="304.0" promptText="Ingrese su nombre de usuario" />
+            <TextField fx:id="txtUsuario" layoutX="58.0" layoutY="132.0" prefHeight="33.0" prefWidth="304.0" promptText="Ingrese su nombre de usuario" />
             <Button fx:id="btnAcceder" layoutX="130.0" layoutY="378.0" mnemonicParsing="false" onAction="#login" prefHeight="41.0" prefWidth="172.0" text="Iniciar Sesión">
                <font>
                   <Font name="Century Gothic" size="15.0" />
@@ -48,7 +49,13 @@
                   <Font name="Century Gothic" size="15.0" />
                </font>
             </Button>
-            <PasswordField fx:id="txtPassword" layoutX="58.0" layoutY="311.0" prefHeight="33.0" prefWidth="304.0" promptText="Ingrese su contraseña" />
+            <PasswordField fx:id="txtPassword" layoutX="58.0" layoutY="219.0" prefHeight="33.0" prefWidth="304.0" promptText="Ingrese su contraseña" />
+            <Text layoutX="195.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rol:">
+               <font>
+                  <Font name="Century Gothic Bold" size="21.0" />
+               </font>
+            </Text>
+            <ComboBox fx:id="cmbRol" layoutX="58.0" layoutY="305.0" prefWidth="304.0" />
          </children>
       </AnchorPane>
    </children>

@@ -1,6 +1,9 @@
 package org.mc.inventorySystem.gui;
 
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.validation.NumberValidator;
+import com.jfoenix.validation.RequiredFieldValidator;
+import java.awt.event.KeyAdapter;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -28,10 +31,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import javax.swing.JTextField;
 import org.mc.inventorySystem.core.MySQLConnection;
 import org.mc.inventorySystem.core.model.Pintura;
 
 public class ProductoController implements Initializable {
+
     @FXML
     private TextField txtNombre;
 
@@ -127,6 +132,8 @@ public class ProductoController implements Initializable {
                 "4 LT",
                 "19 LT");
         cmbCapacidad.setItems(capacidad);
+
+        
 
     }
 
@@ -381,8 +388,20 @@ public class ProductoController implements Initializable {
         return p;
     }
     
-    public void backToPrincipal(){
+    public void validate() {
         
+        RequiredFieldValidator rv = new RequiredFieldValidator();
+        rv.setMessage("Este campo es obligatorio");
+        
+        NumberValidator nv = new NumberValidator();
+        nv.setMessage("Este campo solo es valido con números");
+        
+        
+        //txtPrecio.get().add(nv);
+    }
+
+    public void backToPrincipal() {
+
         try {
             // Cargo la vista
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/mc/inventorySystem/gui/fxml/Principal.fxml"));

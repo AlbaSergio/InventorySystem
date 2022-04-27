@@ -18,30 +18,46 @@
                </font>
             </Text>
             <FontAwesomeIconView glyphName="HOME" layoutX="58.0" layoutY="59.0" size="27" />
-            <Button fx:id="btnProductos" layoutX="61.0" layoutY="146.0" mnemonicParsing="false" onAction="#openProducts" prefHeight="45.0" prefWidth="142.0" style="-fx-background-color: none;" text="Productos">
+            <Button fx:id="btnProductos" layoutX="45.0" layoutY="95.0" mnemonicParsing="false" onAction="#openProducts" prefHeight="45.0" prefWidth="151.0" style="-fx-background-color: none;" text="Productos">
                <font>
                   <Font name="Century Gothic Bold" size="21.0" />
                </font>
+               <graphic>
+                  <FontAwesomeIconView glyphName="BOOK" size="18" />
+               </graphic>
             </Button>
-            <FontAwesomeIconView glyphName="BOOK" layoutX="61.0" layoutY="175.0" size="18" />
-            <Button fx:id="btnVentas" layoutX="71.0" layoutY="229.0" mnemonicParsing="false" onAction="#openSales" prefHeight="45.0" prefWidth="90.0" style="-fx-background-color: none;" text="Venta">
+            <Button fx:id="btnVentas" layoutX="38.0" layoutY="140.0" mnemonicParsing="false" onAction="#openSales" prefHeight="45.0" prefWidth="130.0" style="-fx-background-color: none;" text="Venta">
                <font>
                   <Font name="Century Gothic Bold" size="21.0" />
                </font>
+               <graphic>
+                  <FontAwesomeIconView glyphName="MONEY" size="18" wrappingWidth="18.803575336933136" />
+               </graphic>
             </Button>
-            <FontAwesomeIconView glyphName="MONEY" layoutX="63.0" layoutY="258.0" size="18" wrappingWidth="18.803575336933136" />
-            <Button fx:id="btnUsuarios" layoutX="77.0" layoutY="316.0" mnemonicParsing="false" onAction="#openUsers" style="-fx-background-color: none;" text="Usuarios">
+            <Button fx:id="btnUsuarios" layoutX="47.0" layoutY="186.0" mnemonicParsing="false" onAction="#openUsers" style="-fx-background-color: none;" text="Usuarios">
                <font>
                   <Font name="Century Gothic Bold" size="21.0" />
                </font>
+               <graphic>
+                  <FontAwesomeIconView glyphName="USERS" size="18" />
+               </graphic>
             </Button>
-            <FontAwesomeIconView glyphName="USERS" layoutX="63.0" layoutY="343.0" size="18" />
-            <Button fx:id="btnSalir" layoutX="77.0" layoutY="401.0" mnemonicParsing="false" onAction="#backToPrincipal" style="-fx-background-color: none;" text="Salir">
+            <Button fx:id="btnSalir" layoutX="65.0" layoutY="401.0" mnemonicParsing="false" onAction="#backToPrincipal" style="-fx-background-color: none;" text="Salir">
                <font>
                   <Font name="Century Gothic Bold" size="21.0" />
                </font>
+               <graphic>
+                  <FontAwesomeIconView glyphName="XING" size="18" />
+               </graphic>
             </Button>
-            <FontAwesomeIconView glyphName="XING" layoutX="63.0" layoutY="427.0" size="18" />
+            <Button fx:id="btnGraficas" layoutX="46.0" layoutY="239.0" mnemonicParsing="false" onAction="#openChart" style="-fx-background-color: none;" text="Gráficas">
+               <font>
+                  <Font name="Century Gothic Bold" size="21.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView glyphName="LINE_CHART" size="18" />
+               </graphic>
+            </Button>
          </children>
       </AnchorPane>
       <Text layoutX="360.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Panel de Administración.">

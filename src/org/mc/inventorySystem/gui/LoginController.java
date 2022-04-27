@@ -4,9 +4,7 @@
  */
 package org.mc.inventorySystem.gui;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXPasswordField;
-import com.jfoenix.controls.JFXTextField;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -16,6 +14,8 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,6 +25,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -39,7 +40,7 @@ import org.mc.inventorySystem.core.MySQLConnection;
  */
 public class LoginController implements Initializable {
 
-   @FXML
+    @FXML
     private AnchorPane anchor;
 
     @FXML
@@ -50,6 +51,9 @@ public class LoginController implements Initializable {
 
     @FXML
     private PasswordField txtPassword;
+
+    @FXML
+    private ComboBox<String> cmbRol;
 
     @FXML
     private Button btnAcceder;
@@ -122,7 +126,11 @@ public class LoginController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        ObservableList<String> roles = FXCollections.observableArrayList(
+                "Admin",
+                "Colaborador"
+        );
+        cmbRol.setItems(roles);
     }
 
 }

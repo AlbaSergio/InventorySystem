@@ -36,6 +36,9 @@ public class PrincipalController implements Initializable {
     private Button btnUsuarios;
 
     @FXML
+    private Button btnGraficas;
+
+    @FXML
     private Button btnSalir;
 
     public void openProducts(ActionEvent event) {
@@ -119,6 +122,35 @@ public class PrincipalController implements Initializable {
             stage.setOnCloseRequest(e -> controlador.closeWindows());
             //Ciero la ventana donde estoy
             Stage myStage = (Stage) this.btnVentas.getScene().getWindow();
+            myStage.close();
+        } catch (IOException ex) {
+            Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void openChart(ActionEvent event) {
+        try {
+            // Cargo la vista
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/mc/inventorySystem/gui/fxml/Grafica.fxml"));
+
+            // Cargo el padre
+            Parent root = loader.load();
+
+            // Obtengo el controlador
+            GraficaController controlador = loader.getController();
+
+            // Creo la scene y el stage
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+
+            // Asocio el stage con el scene
+            stage.setScene(scene);
+            stage.show();
+
+            // Indico que debe hacer al cerrar
+            stage.setOnCloseRequest(e -> controlador.closeWindows());
+            //Ciero la ventana donde estoy
+            Stage myStage = (Stage) this.btnProductos.getScene().getWindow();
             myStage.close();
         } catch (IOException ex) {
             Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, null, ex);
