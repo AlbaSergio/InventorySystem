@@ -9,28 +9,28 @@ package org.mc.inventorySystem.core.model;
  *
  * @author practicante02
  */
-public class Pintura {
-    private int idPintura;
+public class Producto {
+    private int idProducto;
     private String nombre;
     private String marca; 
     private String descripcion; 
-    private String categoria;
+    private int idCategoria;
     private String capacidad;
     private double precio;
     private int estatus;
 
-    public Pintura(int idPintura, String nombre, String marca, String descripcion, String categoria, String capacidad, double precio, int estatus) {
-        this.idPintura = idPintura;
+    public Producto(int idProducto, String nombre, String marca, String descripcion, int categoria, String capacidad, double precio, int estatus) {
+        this.idProducto = idProducto;
         this.nombre = nombre;
         this.marca = marca;
         this.descripcion = descripcion;
-        this.categoria = categoria;
+        this.idCategoria = categoria;
         this.capacidad = capacidad;
         this.precio = precio;
         this.estatus = estatus;
     }
 
-    public Pintura() {
+    public Producto() {
     }
     
     
@@ -38,15 +38,15 @@ public class Pintura {
     /**
      * @return the idPintura
      */
-    public int getIdPintura() {
-        return idPintura;
+    public int getIdProducto() {
+        return idProducto;
     }
 
     /**
-     * @param idPintura the idPintura to set
+     * @param idProducto the idPintura to set
      */
-    public void setIdPintura(int idPintura) {
-        this.idPintura = idPintura;
+    public void setIdProducto(int idProducto) {
+        this.idProducto = idProducto;
     }
 
     /**
@@ -92,17 +92,17 @@ public class Pintura {
     }
 
     /**
-     * @return the categoria
+     * @return the idCategoria
      */
-    public String getCategoria() {
-        return categoria;
+    public int getIdCategoria() {
+        return idCategoria;
     }
 
     /**
-     * @param categoria the categoria to set
+     * @param idCategoria the idCategoria to set
      */
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
+    public void setIdCategoria(int idCategoria) {
+        this.idCategoria = idCategoria;
     }
 
     /**

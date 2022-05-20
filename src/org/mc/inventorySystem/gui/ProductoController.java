@@ -33,7 +33,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javax.swing.JTextField;
 import org.mc.inventorySystem.core.MySQLConnection;
-import org.mc.inventorySystem.core.model.Pintura;
+import org.mc.inventorySystem.core.model.Producto;
 
 public class ProductoController implements Initializable {
 
@@ -74,28 +74,28 @@ public class ProductoController implements Initializable {
     private Button btnPrincipal;
 
     @FXML
-    private TableView<Pintura> tblPinturas;
+    private TableView<Producto> tblPinturas;
 
     @FXML
-    private TableColumn<Pintura, String> colNombre;
+    private TableColumn<Producto, String> colNombre;
 
     @FXML
-    private TableColumn<Pintura, String> colMarca;
+    private TableColumn<Producto, String> colMarca;
 
     @FXML
-    private TableColumn<Pintura, String> colDescripcion;
+    private TableColumn<Producto, String> colDescripcion;
 
     @FXML
-    private TableColumn<Pintura, String> colCategoria;
+    private TableColumn<Producto, ?> colCategoria;
 
     @FXML
-    private TableColumn<Pintura, String> colCapacidad;
+    private TableColumn<Producto, String> colCapacidad;
 
     @FXML
-    private TableColumn<Pintura, ?> colPrecio;
+    private TableColumn<Producto, ?> colPrecio;
 
-    ObservableList<Pintura> pinturasList;
-    ObservableList<Pintura> filtroPintura;
+    ObservableList<Producto> pinturasList;
+    ObservableList<Producto> filtroPintura;
 
     Connection connection = null;
     PreparedStatement preparedStatement = null;
@@ -118,12 +118,7 @@ public class ProductoController implements Initializable {
         getAllPaints();
 
         ObservableList<String> categorias = FXCollections.observableArrayList(
-                "Vinílicas",
-                "Esmaltes",
-                "Aerosoles",
-                "Texturas y Efectos",
-                "Maderas",
-                "Solventes");
+                );
         cmbCategoria.setItems(categorias);
 
         ObservableList<String> capacidad = FXCollections.observableArrayList(
@@ -145,10 +140,10 @@ public class ProductoController implements Initializable {
      */
     public void getAllPaints() {
         //Aquí guardatemos los objetos de tipo Pintura. Una lista es un contenedor dinámico de objetos.
-        ObservableList<Pintura> obp = FXCollections.observableArrayList();
+        ObservableList<Producto> obp = FXCollections.observableArrayList();
 
         //Definimos la consulta SQL:
-        String sql = "SELECT * FROM pintura WHERE estatus = 1";
+        String sql = "SELECT * FROM producto WHERE estatus = 1";
 
         //Con este objeto nos vamos a conectar a la Base de Datos:
         connection = MySQLConnection.open();
@@ -158,12 +153,12 @@ public class ProductoController implements Initializable {
             resultSet = preparedStatement.executeQuery();
             // Recorremos el ResultSet:
             while (resultSet.next()) {
-                Pintura p = new Pintura();
-                p.setIdPintura(resultSet.getInt("idPintura"));
+                Producto p = new Producto();
+                p.setIdProducto(resultSet.getInt("idProducto"));
                 p.setNombre(resultSet.getString("nombre"));
                 p.setMarca(resultSet.getString("marca"));
                 p.setDescripcion(resultSet.getString("descripcion"));
-                p.setCategoria(resultSet.getString("categoria"));
+                p.setIdCategoria(resultSet.getInt("idCategoria"));
                 p.setCapacidad(resultSet.getString("capacidad"));
                 p.setPrecio(resultSet.getDouble("precio"));
                 obp.add(p);
@@ -198,7 +193,7 @@ public class ProductoController implements Initializable {
         connection = MySQLConnection.open();
 
         //Definimos la consulta SQL que realizara la inserción del registro:
-        String sql = "INSERT INTO pintura(nombre, marca, descripcion, categoria, capacidad, precio)"
+        String sql = "INSERT INTO producto(nombre, marca, descripcion, idCategoria, capacidad, precio)"
                 + "VALUES(?, ?, ?, ?, ?, ?);";
 
         try {
@@ -217,8 +212,8 @@ public class ProductoController implements Initializable {
             preparedStatement.executeUpdate();
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Registro de Pinturas");
-            alert.setHeaderText("Pintura registrada correctamente.");
+            alert.setTitle("Registro de Productos");
+            alert.setHeaderText("Producto registrado correctamente.");
             alert.showAndWait();
 
         } catch (SQLException ex) {
@@ -237,12 +232,12 @@ public class ProductoController implements Initializable {
      */
     public void deleteProduct(ActionEvent event) throws SQLException {
         int idDelete = tblPinturas.getSelectionModel().getSelectedIndex();
-        int id = Integer.parseInt(String.valueOf(tblPinturas.getItems().get(idDelete).getIdPintura()));
+        int id = Integer.parseInt(String.valueOf(tblPinturas.getItems().get(idDelete).getIdProducto()));
 
         //Con este objeto abrimos la conexión a la base de datos 
         connection = MySQLConnection.open();
 
-        String sql = "UPDATE pintura SET estatus = 0 WHERE idPintura = ?;";
+        String sql = "UPDATE producto SET estatus = 0 WHERE idProducto = ?;";
 
         preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1, id);
@@ -268,7 +263,7 @@ public class ProductoController implements Initializable {
         double precio;
 
         int idDelete = tblPinturas.getSelectionModel().getSelectedIndex();
-        int id = Integer.parseInt(String.valueOf(tblPinturas.getItems().get(idDelete).getIdPintura()));
+        int id = Integer.parseInt(String.valueOf(tblPinturas.getItems().get(idDelete).getIdProducto()));
 
         nombre = txtNombre.getText().toString();
         marca = txtMarca.getText().toString();
@@ -278,8 +273,8 @@ public class ProductoController implements Initializable {
         precio = Double.parseDouble(txtPrecio.getText());
 
         //Definimos la consulta SQL que realiza la inserción del registro:
-        String sql = "UPDATE pintura SET nombre = ?, marca = ?, descripcion = ?,"
-                + " categoria = ?, capacidad = ?, precio = ? WHERE idPintura = ?";
+        String sql = "UPDATE producto SET nombre = ?, marca = ?, descripcion = ?,"
+                + " idCategoria = ?, capacidad = ?, precio = ? WHERE idProducto = ?";
 
         // Con este objeto ejecutaremos la sentencia SQL que realiza la inserción en la tabla. Debemos especificarle que queremos que nos devuelva el ID
         // que se genera al realizar la inserción del registro.
@@ -326,14 +321,14 @@ public class ProductoController implements Initializable {
     actualizarlo.
      */
     public void showDetailProduct() {
-        Pintura p = this.tblPinturas.getSelectionModel().getSelectedItem();
+        Producto p = this.tblPinturas.getSelectionModel().getSelectedItem();
 
         if (p != null) {
 
             this.txtNombre.setText(p.getNombre());
             this.txtMarca.setText(p.getMarca());
             this.txtDescripcion.setText(p.getDescripcion());
-            this.cmbCategoria.getSelectionModel().select(p.getCategoria());
+            this.cmbCategoria.getSelectionModel().select(p.getIdCategoria());
             this.cmbCapacidad.getSelectionModel().select(p.getCapacidad());
             this.txtPrecio.setText(String.valueOf(p.getPrecio()));
 
@@ -351,8 +346,8 @@ public class ProductoController implements Initializable {
             //Limpiamos la lista
             this.filtroPintura.clear();
 
-            for (Pintura p : this.pinturasList) {
-                if (p.getNombre().contains(filtro) || p.getMarca().contains(filtro) || p.getCategoria().contains(filtro)) {
+            for (Producto p : this.pinturasList) {
+                if (p.getNombre().contains(filtro) || p.getMarca().contains(filtro)) {
 
                     this.filtroPintura.add(p);
                 }
@@ -370,16 +365,16 @@ public class ProductoController implements Initializable {
      * @param rs
      * @return
      */
-    public Pintura fill(ResultSet rs) throws SQLException {
+    public Producto fill(ResultSet rs) throws SQLException {
         // Creamos una nueva instancia de Pintura:
-        Pintura p = new Pintura();
+        Producto p = new Producto();
 
         // Llenamos sus propiedades:
-        p.setIdPintura(rs.getInt("idPintura"));
+        p.setIdProducto(rs.getInt("idPintura"));
         p.setNombre(rs.getString("nombre"));
         p.setMarca(rs.getString("marca"));
         p.setDescripcion(rs.getString("descripcion"));
-        p.setCategoria(rs.getString("categoria"));
+        p.setIdCategoria(rs.getInt("idCategoria"));
         p.setCapacidad(rs.getString("capacidad"));
         p.setPrecio(rs.getDouble("precio"));
         p.setEstatus(rs.getInt("estatus"));

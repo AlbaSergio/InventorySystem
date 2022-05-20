@@ -21,7 +21,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/org/mc/inventorySystem/gui/fxml/Login.fxml"));
         Scene scene = new Scene(root);
-        
+        scene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
         primaryStage.setTitle("Sistema de Control");
         primaryStage.setScene(scene);
         primaryStage.show();

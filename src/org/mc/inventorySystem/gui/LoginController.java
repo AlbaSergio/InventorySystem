@@ -4,7 +4,7 @@
  */
 package org.mc.inventorySystem.gui;
 
-
+import com.jfoenix.controls.JFXProgressBar;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -26,6 +26,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -61,6 +62,12 @@ public class LoginController implements Initializable {
     @FXML
     private Button btnSalir;
 
+    @FXML
+    private JFXProgressBar pbLogin;
+
+    @FXML
+    private Label lblLogin;
+
     Stage dialogStage = new Stage();
     Scene scene;
 
@@ -77,7 +84,7 @@ public class LoginController implements Initializable {
     a comparar los valores de las cajasd de texto con los que se encuentren 
     en la base de datos pra dar un acceso adecuado a la aplicación.
      */
-    public void login(ActionEvent event) throws IOException {
+    public void login(ActionEvent event) throws IOException, InterruptedException {
 
         //Tomamos los valores de las cajas de texto y los asignamos a una variable
         String user = txtUsuario.getText().toString();
@@ -92,9 +99,11 @@ public class LoginController implements Initializable {
             preparedStatement.setString(2, password);
             resultSet = preparedStatement.executeQuery();
             if (!resultSet.next()) {
-                infoBox("Ingrese Usuario y Password Correctos", "Inicio de Sesión Fallido", null);
+                showProgress(false);
+                lblLogin.setText("Usuario no encontrado, Intente de nuevo.");
             } else {
-                infoBox("Acceso Correcto. Bienvenido " + user, "Inicio de Sesión Correcto", null);
+                showProgress(true);
+                Thread.sleep(3000);
                 Node source = (Node) event.getSource();
                 dialogStage = (Stage) source.getScene().getWindow();
                 dialogStage.close();
@@ -119,6 +128,22 @@ public class LoginController implements Initializable {
         alert.setHeaderText(headerMessage);
         alert.setContentText(infoMessage);
         alert.showAndWait();
+    }
+
+    private void showProgress(boolean flag) {
+
+        if (flag) {
+
+            btnAcceder.setDisable(true);
+            lblLogin.setVisible(true);
+            lblLogin.setText("Iniciando Sesión, espere un momento...");
+            pbLogin.setVisible(true);
+        } else {
+
+            btnAcceder.setDisable(false);
+            pbLogin.setVisible(false);
+
+        }
     }
 
     /**
