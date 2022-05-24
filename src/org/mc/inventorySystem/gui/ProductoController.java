@@ -33,6 +33,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javax.swing.JTextField;
 import org.mc.inventorySystem.core.MySQLConnection;
+import org.mc.inventorySystem.core.model.Categoria;
 import org.mc.inventorySystem.core.model.Producto;
 
 public class ProductoController implements Initializable {
@@ -47,7 +48,7 @@ public class ProductoController implements Initializable {
     private TextArea txtDescripcion;
 
     @FXML
-    private ComboBox<String> cmbCategoria;
+    private ComboBox<Categoria> cmbCategoria;
 
     @FXML
     private ComboBox<String> cmbCapacidad;
@@ -96,6 +97,7 @@ public class ProductoController implements Initializable {
 
     ObservableList<Producto> pinturasList;
     ObservableList<Producto> filtroPintura;
+    ObservableList<Categoria> categorias;
 
     Connection connection = null;
     PreparedStatement preparedStatement = null;
@@ -107,7 +109,7 @@ public class ProductoController implements Initializable {
         this.colNombre.setCellValueFactory(new PropertyValueFactory("nombre"));
         this.colMarca.setCellValueFactory(new PropertyValueFactory("marca"));
         this.colDescripcion.setCellValueFactory(new PropertyValueFactory("descripcion"));
-        this.colCategoria.setCellValueFactory(new PropertyValueFactory("categoria"));
+        this.colCategoria.setCellValueFactory(new PropertyValueFactory("idCategoria"));
         this.colCapacidad.setCellValueFactory(new PropertyValueFactory("capacidad"));
         this.colPrecio.setCellValueFactory(new PropertyValueFactory("precio"));
 
@@ -117,9 +119,11 @@ public class ProductoController implements Initializable {
 
         getAllPaints();
 
-        ObservableList<String> categorias = FXCollections.observableArrayList(
-                );
-        cmbCategoria.setItems(categorias);
+        try {
+            fillComboBox();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         ObservableList<String> capacidad = FXCollections.observableArrayList(
                 "400 ml",
@@ -128,12 +132,10 @@ public class ProductoController implements Initializable {
                 "19 LT");
         cmbCapacidad.setItems(capacidad);
 
-        
-
     }
 
     /*
-     En este método se hace la carga dinámica de los objetos de tipo Pintura 
+     En este método se hace la carga dinámica de los objetos de tipo Producto 
      que se encuentran dentro de la BD en base a su estatus recordando
      que el estatus en 1 quiere decir que se encuentrá activo y el 0 es que 
      ya no se encuentra activo dentro del inventario.
@@ -180,7 +182,8 @@ public class ProductoController implements Initializable {
     Alert avisandonos que algo salio mal y debemos verificar.
      */
     public void insertProduct(ActionEvent event) {
-        String nombre, marca, descripcion, categoria, capacidad;
+        String nombre, marca, descripcion, capacidad;
+        Categoria categoria;
         double precio;
         nombre = txtNombre.getText().toString();
         marca = txtMarca.getText().toString();
@@ -205,7 +208,7 @@ public class ProductoController implements Initializable {
             preparedStatement.setString(1, nombre);
             preparedStatement.setString(2, marca);
             preparedStatement.setString(3, descripcion);
-            preparedStatement.setString(4, categoria);
+            preparedStatement.setInt(4, categoria.getIdCategoria());
             preparedStatement.setString(5, capacidad);
             preparedStatement.setDouble(6, precio);
 
@@ -259,7 +262,8 @@ public class ProductoController implements Initializable {
     que se encuentren en nustra base de datos, tomando como referencia el id del regiss
      */
     public void updateProduct(ActionEvent event) throws SQLException {
-        String nombre, marca, descripcion, categoria, capacidad;
+        String nombre, marca, descripcion, capacidad;
+        Categoria categoria;
         double precio;
 
         int idDelete = tblPinturas.getSelectionModel().getSelectedIndex();
@@ -284,7 +288,7 @@ public class ProductoController implements Initializable {
         preparedStatement.setString(1, nombre);
         preparedStatement.setString(2, marca);
         preparedStatement.setString(3, descripcion);
-        preparedStatement.setString(4, categoria);
+        preparedStatement.setInt(4, categoria.getIdCategoria());
         preparedStatement.setString(5, capacidad);
         preparedStatement.setDouble(6, precio);
         preparedStatement.setInt(7, id);
@@ -358,6 +362,31 @@ public class ProductoController implements Initializable {
 
     }
 
+    public void fillComboBox() throws SQLException {
+        ObservableList<Categoria> categorias = FXCollections.observableArrayList();
+        //Definimos la consulta SQL:
+        String sql = "SELECT idCategoria, nombre FROM categoria WHERE estatus = 1";
+
+        //Con este objeto nos vamos a conectar a la Base de Datos:
+        connection = MySQLConnection.open();
+
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            resultSet = preparedStatement.executeQuery();
+            // Recorremos el ResultSet:
+            while (resultSet.next()) {
+                Categoria c = new Categoria();
+                c.setIdCategoria(resultSet.getInt("idCategoria"));
+                c.setNombre(resultSet.getString("nombre"));
+                categorias.add(c);
+            }
+
+            cmbCategoria.setItems(categorias);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     /**
      * Crea un objeto de tipo Producto y llena sus propiedades utilizando los
      * datos proporcionados por un ResultSet.
@@ -382,16 +411,15 @@ public class ProductoController implements Initializable {
         // Devolvemos el objeto de tipo pintura:
         return p;
     }
-    
+
     public void validate() {
-        
+
         RequiredFieldValidator rv = new RequiredFieldValidator();
         rv.setMessage("Este campo es obligatorio");
-        
+
         NumberValidator nv = new NumberValidator();
         nv.setMessage("Este campo solo es valido con números");
-        
-        
+
         //txtPrecio.get().add(nv);
     }
 

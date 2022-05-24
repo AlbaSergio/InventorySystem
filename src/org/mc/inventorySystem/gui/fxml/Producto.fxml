@@ -93,11 +93,11 @@
          </children>
       </AnchorPane>
       <JFXTextField fx:id="txtBuscar" layoutX="456.0" layoutY="27.0" onKeyReleased="#txtBuscar" prefHeight="25.0" prefWidth="517.0" AnchorPane.leftAnchor="456.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="27.0" />
-      <Button fx:id="btnPrincipal" layoutX="867.0" layoutY="628.0" mnemonicParsing="false" onAction="#backToPrincipal" text="Volver al Menú">
+      <Button fx:id="btnPrincipal" layoutX="867.0" layoutY="649.0" mnemonicParsing="false" onAction="#backToPrincipal" text="Volver al Menú" AnchorPane.bottomAnchor="6.0" AnchorPane.rightAnchor="14.0">
          <font>
             <Font name="Century Gothic Bold" size="12.0" />
          </font></Button>
-      <TableView fx:id="tblPinturas" layoutX="367.0" layoutY="70.0" onMouseClicked="#showDetailProduct" prefHeight="551.0" prefWidth="607.0">
+      <TableView fx:id="tblPinturas" layoutX="367.0" layoutY="70.0" onMouseClicked="#showDetailProduct" prefHeight="551.0" prefWidth="607.0" AnchorPane.bottomAnchor="57.0" AnchorPane.leftAnchor="367.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="70.0">
         <columns>
           <TableColumn fx:id="colNombre" prefWidth="100.33331298828125" text="Nombre" />
           <TableColumn fx:id="colMarca" prefWidth="82.0" text="Marca" />

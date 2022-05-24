@@ -42,7 +42,7 @@
                   <FontAwesomeIconView glyphName="USERS" size="18" />
                </graphic>
             </Button>
-            <Button fx:id="btnSalir" layoutX="65.0" layoutY="401.0" mnemonicParsing="false" onAction="#backToPrincipal" style="-fx-background-color: none;" text="Salir">
+            <Button fx:id="btnSalir" layoutX="65.0" layoutY="432.0" mnemonicParsing="false" onAction="#backToPrincipal" style="-fx-background-color: none;" text="Salir">
                <font>
                   <Font name="Century Gothic Bold" size="21.0" />
                </font>
@@ -50,12 +50,20 @@
                   <FontAwesomeIconView glyphName="XING" size="18" />
                </graphic>
             </Button>
-            <Button fx:id="btnGraficas" layoutX="46.0" layoutY="239.0" mnemonicParsing="false" onAction="#openChart" style="-fx-background-color: none;" text="Gráficas">
+            <Button fx:id="btnProveedor" layoutX="44.0" layoutY="232.0" mnemonicParsing="false" onAction="#openProviders" style="-fx-background-color: none;" text="Proveedores">
                <font>
                   <Font name="Century Gothic Bold" size="21.0" />
                </font>
                <graphic>
-                  <FontAwesomeIconView glyphName="LINE_CHART" size="18" />
+                  <FontAwesomeIconView glyphName="BELL" size="18" />
+               </graphic>
+            </Button>
+            <Button fx:id="btnCategorias" layoutX="44.0" layoutY="274.0" mnemonicParsing="false" onAction="#openCategories" style="-fx-background-color: none;" text="Categorías">
+               <font>
+                  <Font name="Century Gothic Bold" size="21.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView glyphName="LIST" size="17" />
                </graphic>
             </Button>
          </children>
