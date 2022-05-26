@@ -11,8 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="678.0" prefWidth="985.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="org.mc.inventorySystem.gui.CategoriaController">
+<AnchorPane id="AnchorPane" prefHeight="678.0" prefWidth="985.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.mc.inventorySystem.gui.CategoriaController">
    <children>
       <AnchorPane layoutX="20.0" layoutY="47.0" prefHeight="651.0" prefWidth="348.0" style="-fx-background-color: #6FB1FC;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -27,7 +26,7 @@
                </font>
             </Text>
             <TextField fx:id="txtCategoria" layoutX="17.0" layoutY="167.0" prefHeight="25.0" prefWidth="315.0" />
-            <Button fx:id="btnGuardar" layoutX="17.0" layoutY="550.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="118.0" style="-fx-background-color: #2196f3;" text="Guardar">
+            <Button fx:id="btnGuardar" layoutX="17.0" layoutY="550.0" mnemonicParsing="false" onAction="#insertCategories" prefHeight="35.0" prefWidth="118.0" style="-fx-background-color: #2196f3;" text="Guardar">
                <font>
                   <Font name="Century Gothic Bold" size="14.0" />
                </font>
@@ -43,7 +42,7 @@
                   <FontAwesomeIconView glyphName="RETWEET" size="13" />
                </graphic>
             </Button>
-            <Button fx:id="btnNuevo" layoutX="215.0" layoutY="615.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="118.0" style="-fx-background-color: GREEN;" text="Nuevo">
+            <Button fx:id="btnNuevo" layoutX="215.0" layoutY="615.0" mnemonicParsing="false" onAction="#clearField" prefHeight="35.0" prefWidth="118.0" style="-fx-background-color: GREEN;" text="Nuevo">
                <font>
                   <Font name="Century Gothic Bold" size="14.0" />
                </font>
@@ -70,7 +69,7 @@
             <FontAwesomeIconView glyphName="SEARCH" size="15" />
          </graphic>
       </Label>
-      <TableView fx:id="tblCategoria" layoutX="367.0" layoutY="70.0" prefHeight="551.0" prefWidth="607.0" AnchorPane.bottomAnchor="57.0" AnchorPane.leftAnchor="375.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="70.0">
+      <TableView fx:id="tblCategoria" layoutX="367.0" layoutY="70.0" onMouseClicked="#showDetailCategories" prefHeight="551.0" prefWidth="607.0" AnchorPane.bottomAnchor="57.0" AnchorPane.leftAnchor="375.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="70.0">
         <columns>
           <TableColumn fx:id="colNombre" prefWidth="75.0" text="Nombre" />
         </columns>

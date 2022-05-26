@@ -40,9 +40,12 @@ public class PrincipalController implements Initializable {
 
     @FXML
     private Button btnProveedor;
-            
+
     @FXML
     private Button btnCategorias;
+
+    @FXML
+    private Button btnInventario;
 
     @FXML
     private Button btnSalir;
@@ -210,6 +213,36 @@ public class PrincipalController implements Initializable {
 
             // Asocio el stage con el scene
             stage.setTitle("Sistema para Registro de Categorias");
+            stage.setScene(scene);
+            stage.show();
+
+            // Indico que debe hacer al cerrar
+            stage.setOnCloseRequest(e -> controlador.closeWindows());
+            //Ciero la ventana donde estoy
+            Stage myStage = (Stage) this.btnProductos.getScene().getWindow();
+            myStage.close();
+        } catch (IOException ex) {
+            Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void openInventory(ActionEvent event) {
+        try {
+            // Cargo la vista
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/mc/inventorySystem/gui/fxml/Inventario.fxml"));
+
+            // Cargo el padre
+            Parent root = loader.load();
+
+            // Obtengo el controlador
+            InventarioController controlador = loader.getController();
+
+            // Creo la scene y el stage
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+
+            // Asocio el stage con el scene
+            stage.setTitle("Sistema de Inventario");
             stage.setScene(scene);
             stage.show();
 

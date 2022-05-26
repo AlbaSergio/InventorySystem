@@ -18,11 +18,13 @@ import java.util.logging.Logger;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -114,8 +116,58 @@ public class CategoriaController implements Initializable {
         }
 
     }
+
+    /*
+    En este método se hace la inserción de Objetos de tipo Categoria para los registros
+    podemos hacer diversas inserciones y al realizarse nos dara un Alert donde podremos 
+    ver que la insercion se esta haciendo de manera correcta, en caso de no ser asi recibiremos un 
+    Alert avisandonos que algo salio mal y debemos verificar.
+     */
+    public void insertCategories(ActionEvent event) {
+        String nombre;
+        nombre = txtCategoria.getText().toString();
+
+        //Con este objeto abrimos la conexión a la base de datos 
+        connection = MySQLConnection.open();
+
+        //Definimos la consulta SQL que realizara la inserción del registro:
+        String sql = "INSERT INTO categoria(nombre) VALUES(?)";
+
+        try {
+            // Con este objeto ejecutaremos la sentencia SQL que realiza la inserción en la tabla. Debemos especificarle que queremos que nos devuelva el ID
+            // que se genera al realizar la inserción del registro.
+            preparedStatement = connection.prepareStatement(sql);
+
+            //Llenamos el valor de cada campo de la consulta SQL definida antes:
+            preparedStatement.setString(1, nombre);
+            
+            preparedStatement.executeUpdate();
+            
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Registro de Inventario");
+            alert.setHeaderText("Producto registrado correctamente.");
+            alert.showAndWait();
+        } catch (SQLException ex) {
+            Logger.getLogger(CategoriaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        getAllCategories();
+        clearField();
+    }
+
+    public void showDetailCategories() {
+        Categoria c = this.tblCategoria.getSelectionModel().getSelectedItem();
+
+        if (c != null) {
+            this.txtCategoria.setText(c.getNombre());
+        }
+    }
     
-     public void closeWindows() {
+    public void clearField() {
+        txtCategoria.setText("");
+    }
+
+    public void closeWindows() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/mc/inventorySystem/gui/fxml/Principal.fxml"));
 
