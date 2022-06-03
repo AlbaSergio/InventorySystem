@@ -26,8 +26,8 @@ import javafx.stage.Stage;
  */
 public class PrincipalController implements Initializable {
 
-    @FXML
-    private Button btnProductos;
+//    @FXML
+//    private Button btnProductos;
 
     @FXML
     private Button btnVentas;
@@ -50,34 +50,34 @@ public class PrincipalController implements Initializable {
     @FXML
     private Button btnSalir;
 
-    public void openProducts(ActionEvent event) {
-        try {
-            // Cargo la vista
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/mc/inventorySystem/gui/fxml/Producto.fxml"));
-
-            // Cargo el padre
-            Parent root = loader.load();
-
-            // Obtengo el controlador
-            ProductoController controlador = loader.getController();
-
-            // Creo la scene y el stage
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-
-            // Asocio el stage con el scene
-            stage.setScene(scene);
-            stage.show();
-
-            // Indico que debe hacer al cerrar
-            stage.setOnCloseRequest(e -> controlador.closeWindows());
-            //Ciero la ventana donde estoy
-            Stage myStage = (Stage) this.btnProductos.getScene().getWindow();
-            myStage.close();
-        } catch (IOException ex) {
-            Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+//    public void openProducts(ActionEvent event) {
+//        try {
+//            // Cargo la vista
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/mc/inventorySystem/gui/fxml/Producto.fxml"));
+//
+//            // Cargo el padre
+//            Parent root = loader.load();
+//
+//            // Obtengo el controlador
+//            ProductoController controlador = loader.getController();
+//
+//            // Creo la scene y el stage
+//            Scene scene = new Scene(root);
+//            Stage stage = new Stage();
+//
+//            // Asocio el stage con el scene
+//            stage.setScene(scene);
+//            stage.show();
+//
+//            // Indico que debe hacer al cerrar
+//            stage.setOnCloseRequest(e -> controlador.closeWindows());
+//            //Ciero la ventana donde estoy
+//            Stage myStage = (Stage) this.btnProductos.getScene().getWindow();
+//            myStage.close();
+//        } catch (IOException ex) {
+//            Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
 
     public void openSales(ActionEvent event) {
         try {
@@ -159,7 +159,7 @@ public class PrincipalController implements Initializable {
             // Indico que debe hacer al cerrar
             stage.setOnCloseRequest(e -> controlador.closeWindows());
             //Ciero la ventana donde estoy
-            Stage myStage = (Stage) this.btnProductos.getScene().getWindow();
+            Stage myStage = (Stage) this.btnVentas.getScene().getWindow();
             myStage.close();
         } catch (IOException ex) {
             Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, null, ex);
@@ -189,7 +189,7 @@ public class PrincipalController implements Initializable {
             // Indico que debe hacer al cerrar
             stage.setOnCloseRequest(e -> controlador.closeWindows());
             //Ciero la ventana donde estoy
-            Stage myStage = (Stage) this.btnProductos.getScene().getWindow();
+            Stage myStage = (Stage) this.btnVentas.getScene().getWindow();
             myStage.close();
         } catch (IOException ex) {
             Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, null, ex);
@@ -219,7 +219,7 @@ public class PrincipalController implements Initializable {
             // Indico que debe hacer al cerrar
             stage.setOnCloseRequest(e -> controlador.closeWindows());
             //Ciero la ventana donde estoy
-            Stage myStage = (Stage) this.btnProductos.getScene().getWindow();
+            Stage myStage = (Stage) this.btnVentas.getScene().getWindow();
             myStage.close();
         } catch (IOException ex) {
             Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, null, ex);
@@ -249,7 +249,7 @@ public class PrincipalController implements Initializable {
             // Indico que debe hacer al cerrar
             stage.setOnCloseRequest(e -> controlador.closeWindows());
             //Ciero la ventana donde estoy
-            Stage myStage = (Stage) this.btnProductos.getScene().getWindow();
+            Stage myStage = (Stage) this.btnVentas.getScene().getWindow();
             myStage.close();
         } catch (IOException ex) {
             Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, null, ex);

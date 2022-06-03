@@ -11,14 +11,14 @@ package org.mc.inventorySystem.core.model;
  */
 public class Proveedor {
     private int idProveedor;
-    private String nombreEmpresa;
+    private String empresa;
     private String contacto;
     private String direccion;
     private int estatus;
 
     public Proveedor(int idProveedor, String nombreEmpresa, String contacto, String direccion, int estatus) {
         this.idProveedor = idProveedor;
-        this.nombreEmpresa = nombreEmpresa;
+        this.empresa = nombreEmpresa;
         this.contacto = contacto;
         this.direccion = direccion;
         this.estatus = estatus;
@@ -44,17 +44,17 @@ public class Proveedor {
     }
 
     /**
-     * @return the nombreEmpresa
+     * @return the empresa
      */
-    public String getNombreEmpresa() {
-        return nombreEmpresa;
+    public String getEmpresa() {
+        return empresa;
     }
 
     /**
-     * @param nombreEmpresa the nombreEmpresa to set
+     * @param empresa the empresa to set
      */
-    public void setNombreEmpresa(String nombreEmpresa) {
-        this.nombreEmpresa = nombreEmpresa;
+    public void setEmpresa(String empresa) {
+        this.empresa = empresa;
     }
 
     /**
@@ -98,4 +98,15 @@ public class Proveedor {
     public void setEstatus(int estatus) {
         this.estatus = estatus;
     }
+
+    
+    
+    @Override
+    public String toString() {
+        return idProveedor + ".- "+ empresa;
+    }
+    
+    
+    
+    
 }

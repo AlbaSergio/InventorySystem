@@ -12,7 +12,8 @@ package org.mc.inventorySystem.core.model;
 public class Categoria {
 
     private int idCategoria;
-    private String nombre;
+    private String nombreCategoria;
+    private String descripcion;
     private int estatus;
 
     public Categoria(int idCategoria) {
@@ -21,7 +22,7 @@ public class Categoria {
 
     public Categoria(int idCategoria, String nombre, int estatus) {
         this.idCategoria = idCategoria;
-        this.nombre = nombre;
+        this.nombreCategoria = nombre;
         this.estatus = estatus;
     }
 
@@ -49,18 +50,28 @@ public class Categoria {
     }
 
     /**
-     * @return the nombre
+     * @return the nombreCategoria
      */
-    public String getNombre() {
-        return nombre;
+    public String getNombreCategoria() {
+        return nombreCategoria;
     }
 
     /**
-     * @param nombre the nombre to set
+     * @param nombreCategoria the nombreCategoria to set
      */
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombreCategoria(String nombreCategoria) {
+        this.nombreCategoria = nombreCategoria;
     }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+    
+    
 
     /**
      * @return the estatus
@@ -76,9 +87,11 @@ public class Categoria {
         this.estatus = estatus;
     }
 
+    
+    
     @Override
     public String toString() {
-        return idCategoria + ".-  "+ nombre;
+        return idCategoria + ".-  "+ nombreCategoria;
     }
     
     

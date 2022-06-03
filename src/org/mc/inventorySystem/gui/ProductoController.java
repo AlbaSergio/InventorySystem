@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -87,7 +88,7 @@ public class ProductoController implements Initializable {
     private TableColumn<Producto, String> colDescripcion;
 
     @FXML
-    private TableColumn<Producto, ?> colCategoria;
+    private TableColumn<Producto, Integer> colCategoria;
 
     @FXML
     private TableColumn<Producto, String> colCapacidad;
@@ -109,7 +110,7 @@ public class ProductoController implements Initializable {
         this.colNombre.setCellValueFactory(new PropertyValueFactory("nombre"));
         this.colMarca.setCellValueFactory(new PropertyValueFactory("marca"));
         this.colDescripcion.setCellValueFactory(new PropertyValueFactory("descripcion"));
-        this.colCategoria.setCellValueFactory(new PropertyValueFactory("idCategoria"));
+        this.colCategoria.setCellValueFactory(param -> new SimpleObjectProperty<>(param.getValue().getIdCategoria().getIdCategoria()));
         this.colCapacidad.setCellValueFactory(new PropertyValueFactory("capacidad"));
         this.colPrecio.setCellValueFactory(new PropertyValueFactory("precio"));
 
@@ -141,9 +142,11 @@ public class ProductoController implements Initializable {
      ya no se encuentra activo dentro del inventario.
      */
     public void getAllPaints() {
-        //Aquí guardatemos los objetos de tipo Pintura. Una lista es un contenedor dinámico de objetos.
+        //Aquí guardaremos los objetos de tipo Productos. 
+        //Una lista es un contenedor dinámico de objetos.
         ObservableList<Producto> obp = FXCollections.observableArrayList();
-
+        
+        Producto p = null;
         //Definimos la consulta SQL:
         String sql = "SELECT * FROM producto WHERE estatus = 1";
 
@@ -155,14 +158,7 @@ public class ProductoController implements Initializable {
             resultSet = preparedStatement.executeQuery();
             // Recorremos el ResultSet:
             while (resultSet.next()) {
-                Producto p = new Producto();
-                p.setIdProducto(resultSet.getInt("idProducto"));
-                p.setNombre(resultSet.getString("nombre"));
-                p.setMarca(resultSet.getString("marca"));
-                p.setDescripcion(resultSet.getString("descripcion"));
-                p.setIdCategoria(resultSet.getInt("idCategoria"));
-                p.setCapacidad(resultSet.getString("capacidad"));
-                p.setPrecio(resultSet.getDouble("precio"));
+                p = fill(resultSet);
                 obp.add(p);
             }
 
@@ -377,7 +373,7 @@ public class ProductoController implements Initializable {
             while (resultSet.next()) {
                 Categoria c = new Categoria();
                 c.setIdCategoria(resultSet.getInt("idCategoria"));
-                c.setNombre(resultSet.getString("nombre"));
+                c.setNombreCategoria(resultSet.getString("nombre"));
                 categorias.add(c);
             }
 
@@ -385,6 +381,31 @@ public class ProductoController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public Categoria fillComboBox1() throws SQLException {
+        ObservableList<Categoria> categorias = FXCollections.observableArrayList();
+        //Definimos la consulta SQL:
+        String sql = "SELECT idCategoria, nombre FROM categoria WHERE estatus = 1";
+ 
+        Categoria c = new Categoria();
+        //Con este objeto nos vamos a conectar a la Base de Datos:
+        connection = MySQLConnection.open();
+
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            resultSet = preparedStatement.executeQuery();
+            // Recorremos el ResultSet:
+            while (resultSet.next()) {                
+                c.setIdCategoria(resultSet.getInt("idCategoria"));
+                c.setNombreCategoria(resultSet.getString("nombre"));
+                categorias.add(c);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return c;
     }
 
     /**
@@ -397,13 +418,17 @@ public class ProductoController implements Initializable {
     public Producto fill(ResultSet rs) throws SQLException {
         // Creamos una nueva instancia de Pintura:
         Producto p = new Producto();
+        Categoria c = new Categoria();
+
+        c =  fillComboBox1();
+        
 
         // Llenamos sus propiedades:
-        p.setIdProducto(rs.getInt("idPintura"));
+        p.setIdProducto(rs.getInt("idProducto"));
         p.setNombre(rs.getString("nombre"));
         p.setMarca(rs.getString("marca"));
         p.setDescripcion(rs.getString("descripcion"));
-        p.setIdCategoria(rs.getInt("idCategoria"));
+        p.setIdCategoria(c);
         p.setCapacidad(rs.getString("capacidad"));
         p.setPrecio(rs.getDouble("precio"));
         p.setEstatus(rs.getInt("estatus"));

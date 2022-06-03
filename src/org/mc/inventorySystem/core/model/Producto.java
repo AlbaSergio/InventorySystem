@@ -14,12 +14,13 @@ public class Producto {
     private String nombre;
     private String marca; 
     private String descripcion; 
-    private int idCategoria;
+    private Categoria idCategoria;
+    private Proveedor idProveedor;
     private String capacidad;
     private double precio;
     private int estatus;
 
-    public Producto(int idProducto, String nombre, String marca, String descripcion, int categoria, String capacidad, double precio, int estatus) {
+    public Producto(int idProducto, String nombre, String marca, String descripcion, Categoria categoria, String capacidad, double precio, int estatus) {
         this.idProducto = idProducto;
         this.nombre = nombre;
         this.marca = marca;
@@ -94,14 +95,14 @@ public class Producto {
     /**
      * @return the idCategoria
      */
-    public int getIdCategoria() {
+    public Categoria getIdCategoria() {
         return idCategoria;
     }
 
     /**
      * @param idCategoria the idCategoria to set
      */
-    public void setIdCategoria(int idCategoria) {
+    public void setIdCategoria(Categoria idCategoria) {
         this.idCategoria = idCategoria;
     }
 
@@ -146,5 +147,17 @@ public class Producto {
     public void setEstatus(int estatus) {
         this.estatus = estatus;
     }
+
+    public Proveedor getIdProveedor() {
+        return idProveedor;
+    }
+
+    public void setIdProveedor(Proveedor idProveedor) {
+        this.idProveedor = idProveedor;
+    }
+
+    
+    
+    
     
 }

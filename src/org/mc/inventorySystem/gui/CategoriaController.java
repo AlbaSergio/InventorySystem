@@ -28,7 +28,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import org.mc.inventorySystem.core.MySQLConnection;
 import org.mc.inventorySystem.core.model.Categoria;
@@ -42,6 +44,9 @@ public class CategoriaController implements Initializable {
 
     @FXML
     private TextField txtCategoria;
+
+    @FXML
+    private TextArea txtDescripcion;
 
     @FXML
     private Button btnGuardar;
@@ -65,6 +70,9 @@ public class CategoriaController implements Initializable {
     private TableColumn<Categoria, String> colNombre;
 
     @FXML
+    private TableColumn<Categoria, String> colDescripcion;
+
+    @FXML
     private Button btnPrincipal;
 
     Connection connection = null;
@@ -72,6 +80,7 @@ public class CategoriaController implements Initializable {
     ResultSet resultSet = null;
 
     ObservableList<Categoria> categoriaList;
+    ObservableList<Categoria> filtroCategoria;
 
     /**
      * Initializes the controller class.
@@ -79,9 +88,10 @@ public class CategoriaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //Mapeo de columnas de la tabla tblCategoria
-        this.colNombre.setCellValueFactory(parm -> new SimpleObjectProperty<>(parm.getValue().getNombre()));
-
+        this.colNombre.setCellValueFactory(parm -> new SimpleObjectProperty<>(parm.getValue().getNombreCategoria()));
+        this.colDescripcion.setCellValueFactory(parm -> new SimpleObjectProperty<>(parm.getValue().getDescripcion()));
         categoriaList = FXCollections.observableArrayList();
+        filtroCategoria = FXCollections.observableArrayList();
 
         getAllCategories();
     }
@@ -104,7 +114,8 @@ public class CategoriaController implements Initializable {
             while (resultSet.next()) {
                 Categoria c = new Categoria();
                 c.setIdCategoria(resultSet.getInt("idCategoria"));
-                c.setNombre(resultSet.getString("nombre"));
+                c.setNombreCategoria(resultSet.getString("nombreCategoria"));
+                c.setDescripcion(resultSet.getString("descripcion"));
                 obc.add(c);
             }
 
@@ -124,14 +135,15 @@ public class CategoriaController implements Initializable {
     Alert avisandonos que algo salio mal y debemos verificar.
      */
     public void insertCategories(ActionEvent event) {
-        String nombre;
+        String nombre, descripcion;
         nombre = txtCategoria.getText().toString();
+        descripcion = txtDescripcion.getText().toString();
 
         //Con este objeto abrimos la conexión a la base de datos 
         connection = MySQLConnection.open();
 
         //Definimos la consulta SQL que realizara la inserción del registro:
-        String sql = "INSERT INTO categoria(nombre) VALUES(?)";
+        String sql = "INSERT INTO categoria(nombreCategoria, descripcion) VALUES(?, ?)";
 
         try {
             // Con este objeto ejecutaremos la sentencia SQL que realiza la inserción en la tabla. Debemos especificarle que queremos que nos devuelva el ID
@@ -140,31 +152,115 @@ public class CategoriaController implements Initializable {
 
             //Llenamos el valor de cada campo de la consulta SQL definida antes:
             preparedStatement.setString(1, nombre);
-            
+            preparedStatement.setString(2, descripcion);
+
             preparedStatement.executeUpdate();
-            
+
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Registro de Inventario");
-            alert.setHeaderText("Producto registrado correctamente.");
+            alert.setTitle("Registro de Categoría");
+            alert.setHeaderText("Categoría registrada correctamente.");
             alert.showAndWait();
         } catch (SQLException ex) {
             Logger.getLogger(CategoriaController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         getAllCategories();
         clearField();
+    }
+
+    public void updateCategories() throws SQLException {
+        String nombre, descripcion;
+
+        int idDelete = tblCategoria.getSelectionModel().getSelectedIndex();
+        int id = Integer.parseInt(String.valueOf(tblCategoria.getItems().get(idDelete).getIdCategoria()));
+
+        nombre = txtCategoria.getText().toString();
+        descripcion = txtDescripcion.getText().toString();
+
+        //Definimos la consulta SQL que realiza la inserción del registro:
+        String sql = "UPDATE categoria SET nombreCategoria = ?, descripcion = ? WHERE idCategoria = ?";
+
+        // Con este objeto ejecutaremos la sentencia SQL que realiza la inserción en la tabla. Debemos especificarle que queremos que nos devuelva el ID
+        // que se genera al realizar la inserción del registro.
+        preparedStatement = connection.prepareStatement(sql);
+
+        //Llenamos el valor de cada campo de la consulta SQL definida antes:
+        preparedStatement.setString(1, nombre);
+        preparedStatement.setString(2, descripcion);
+        preparedStatement.setInt(3, id);
+
+        preparedStatement.executeUpdate();
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Registro de Categoría");
+
+        alert.setHeaderText("Actualizada");
+        alert.setContentText("¡Se actualizo correctamente el registro!");
+
+        alert.showAndWait();
+
+        getAllCategories();
+        clearField();
+    }
+
+    public void deleteCategories() throws SQLException {
+        int idDelete = tblCategoria.getSelectionModel().getSelectedIndex();
+        int id = Integer.parseInt(String.valueOf(tblCategoria.getItems().get(idDelete).getIdCategoria()));
+
+        //Con este objeto abrimos la conexión a la base de datos 
+        connection = MySQLConnection.open();
+
+        String sql = "UPDATE categoria SET estatus = 0 WHERE idCategoria = ?;";
+
+        preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, id);
+        preparedStatement.executeUpdate();
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Registro de Categoría");
+
+        alert.setHeaderText("Eliminada");
+        alert.setContentText("¡Se elimino correctamente el registro!");
+
+        alert.showAndWait();
+
+        getAllCategories();
+        clearField();
+
     }
 
     public void showDetailCategories() {
         Categoria c = this.tblCategoria.getSelectionModel().getSelectedItem();
 
         if (c != null) {
-            this.txtCategoria.setText(c.getNombre());
+            this.txtCategoria.setText(c.getNombreCategoria());
+            this.txtDescripcion.setText(c.getDescripcion());
         }
     }
-    
+
+    @FXML
+    private void filterTable(KeyEvent event) {
+        String filtro = this.txtBuscar.getText();
+
+        if (filtro.isEmpty()) {
+            this.tblCategoria.setItems(categoriaList);
+        } else {
+            //Limpiamos la lista
+            this.filtroCategoria.clear();
+
+            for (Categoria c : this.categoriaList) {
+                if (c.getNombreCategoria().contains(filtro) || c.getDescripcion().contains(filtro)) {
+                    this.filtroCategoria.add(c);
+                }
+            }
+            
+            this.tblCategoria.setItems(filtroCategoria);
+        }
+    }
+
     public void clearField() {
         txtCategoria.setText("");
+        txtDescripcion.setText("");
     }
 
     public void closeWindows() {

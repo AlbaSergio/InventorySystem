@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -34,7 +35,7 @@
                   <FontAwesomeIconView glyphName="SAVE" size="13.0" />
                </graphic>
             </Button>
-            <Button fx:id="btnModificar" layoutX="17.0" layoutY="613.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="118.0" style="-fx-background-color: WHITE;" text="Modificar">
+            <Button fx:id="btnModificar" layoutX="17.0" layoutY="613.0" mnemonicParsing="false" onAction="#updateCategories" prefHeight="35.0" prefWidth="118.0" style="-fx-background-color: WHITE;" text="Modificar">
                <font>
                   <Font name="Century Gothic Bold" size="14.0" />
                </font>
@@ -50,7 +51,7 @@
                   <FontAwesomeIconView glyphName="EDIT" size="13.0" />
                </graphic>
             </Button>
-            <Button fx:id="btnEliminar" layoutX="215.0" layoutY="553.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="118.0" style="-fx-background-color: #C40404;" text="Eliminar">
+            <Button fx:id="btnEliminar" layoutX="215.0" layoutY="553.0" mnemonicParsing="false" onAction="#deleteCategories" prefHeight="35.0" prefWidth="118.0" style="-fx-background-color: #C40404;" text="Eliminar">
                <font>
                   <Font name="Century Gothic Bold" size="14.0" />
                </font>
@@ -58,9 +59,15 @@
                   <FontAwesomeIconView glyphName="TRASH" size="13" />
                </graphic>
             </Button>
+            <Text layoutX="21.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción:">
+               <font>
+                  <Font name="Century Gothic Bold" size="17.0" />
+               </font>
+            </Text>
+            <TextArea fx:id="txtDescripcion" layoutX="17.0" layoutY="235.0" prefHeight="200.0" prefWidth="315.0" />
          </children>
       </AnchorPane>
-      <JFXTextField fx:id="txtBuscar" layoutX="463.0" layoutY="30.0" prefHeight="25.0" prefWidth="517.0" AnchorPane.leftAnchor="463.0" AnchorPane.rightAnchor="5.0" />
+      <JFXTextField fx:id="txtBuscar" layoutX="463.0" layoutY="30.0" onKeyReleased="#filterTable" prefHeight="25.0" prefWidth="517.0" AnchorPane.leftAnchor="463.0" AnchorPane.rightAnchor="5.0" />
       <Label layoutX="374.0" layoutY="36.0" style="-fx-background-color: #6FB1FC;" text="Buscar:">
          <font>
             <Font name="Century Gothic Bold" size="18.0" />
@@ -72,6 +79,7 @@
       <TableView fx:id="tblCategoria" layoutX="367.0" layoutY="70.0" onMouseClicked="#showDetailCategories" prefHeight="551.0" prefWidth="607.0" AnchorPane.bottomAnchor="57.0" AnchorPane.leftAnchor="375.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="70.0">
         <columns>
           <TableColumn fx:id="colNombre" prefWidth="75.0" text="Nombre" />
+            <TableColumn fx:id="colDescripcion" prefWidth="75.0" text="Descripción" />
         </columns>
       </TableView>
       <Button fx:id="btnPrincipal" layoutX="870.0" layoutY="648.0" mnemonicParsing="false" text="Volver al Menú" AnchorPane.bottomAnchor="7.0" AnchorPane.rightAnchor="11.0">

@@ -94,7 +94,7 @@ public class ProveedorController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //Mapeado de columnas de la tabla tblProveedor
-        this.colNombre.setCellValueFactory(parm -> new SimpleObjectProperty<>(parm.getValue().getNombreEmpresa()));
+        this.colNombre.setCellValueFactory(parm -> new SimpleObjectProperty<>(parm.getValue().getEmpresa()));
         this.colContacto.setCellValueFactory(parm -> new SimpleObjectProperty<>(parm.getValue().getContacto()));
         this.colDireccion.setCellValueFactory(parm -> new SimpleObjectProperty<>(parm.getValue().getDireccion()));
 
@@ -127,7 +127,7 @@ public class ProveedorController implements Initializable {
             while (resultSet.next()) {
                 Proveedor p = new Proveedor();
                 p.setIdProveedor(resultSet.getInt("idProveedor"));
-                p.setNombreEmpresa(resultSet.getString("nombreEmpresa"));
+                p.setEmpresa(resultSet.getString("empresa"));
                 p.setContacto(resultSet.getString("contacto"));
                 p.setDireccion(resultSet.getString("direccion"));
                 obp.add(p);
@@ -152,7 +152,7 @@ public class ProveedorController implements Initializable {
         connection = MySQLConnection.open();
 
         //Definimos la consulta SQL que realizará la inserción del registro:
-        String sql = "INSERT INTO proveedor( nombreEmpresa, contacto, direccion)"
+        String sql = "INSERT INTO proveedor( empresa, contacto, direccion)"
                 + "VALUES(?, ?, ?)";
 
         try {
@@ -191,7 +191,7 @@ public class ProveedorController implements Initializable {
         contacto = txtContacto.getText().toString();
         direccion = txtDireccion.getText().toString();
 
-        String sql = "UPDATE proveedor SET nombreEmpresa = ?, contacto = ?, direccion = ? WHERE idProveedor = ?";
+        String sql = "UPDATE proveedor SET empresa = ?, contacto = ?, direccion = ? WHERE idProveedor = ?";
 
         try {
             // Con este objeto ejecutaremos la sentencia SQL que realiza la inserción en la tabla. Debemos especificarle que queremos que nos devuelva el ID
@@ -253,7 +253,7 @@ public class ProveedorController implements Initializable {
         Proveedor p = this.tblProveedor.getSelectionModel().getSelectedItem();
 
         if (p != null) {
-            this.txtEmpresa.setText(p.getNombreEmpresa());
+            this.txtEmpresa.setText(p.getEmpresa());
             this.txtContacto.setText(p.getContacto());
             this.txtDireccion.setText(p.getDireccion());
         }
@@ -271,7 +271,7 @@ public class ProveedorController implements Initializable {
             this.filtroProveedor.clear();
 
             for (Proveedor p : this.proveedorList) {
-                if (p.getNombreEmpresa().contains(filtro) || p.getContacto().contains(filtro)
+                if (p.getEmpresa().contains(filtro) || p.getContacto().contains(filtro)
                         || p.getDireccion().contains(filtro)) {
 
                     this.filtroProveedor.add(p);
@@ -294,7 +294,7 @@ public class ProveedorController implements Initializable {
 
         //Llenamos sus propiedades:
         p.setIdProveedor(rs.getInt("idProveedor"));
-        p.setNombreEmpresa(rs.getString("nombreEmpresa"));
+        p.setEmpresa(rs.getString("empresa"));
         p.setContacto(rs.getString("contacto"));
         p.setDireccion(rs.getString("direccion"));
         p.setEstatus(rs.getInt("estatus"));
