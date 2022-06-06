@@ -198,6 +198,7 @@ public class UsuarioController implements Initializable {
         preparedStatement.setString(5, contrasenia);
         preparedStatement.setString(6, rol);
         preparedStatement.setInt(7, id);
+        System.out.println(idDelete+" "+id);
         preparedStatement.executeUpdate();
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

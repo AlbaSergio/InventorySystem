@@ -60,7 +60,7 @@
                   <FontAwesomeIconView glyphName="SAVE" size="13.0" />
                </graphic>
             </Button>
-            <Button fx:id="btnModificar" layoutX="17.0" layoutY="635.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="118.0" style="-fx-background-color: WHITE;" text="Modificar">
+            <Button fx:id="btnModificar" layoutX="17.0" layoutY="635.0" mnemonicParsing="false" onAction="#updateInventory" prefHeight="35.0" prefWidth="118.0" style="-fx-background-color: WHITE;" text="Modificar">
                <font>
                   <Font name="Century Gothic Bold" size="14.0" />
                </font>
@@ -76,7 +76,7 @@
                   <FontAwesomeIconView glyphName="EDIT" size="13.0" />
                </graphic>
             </Button>
-            <Button fx:id="btnEliminar" layoutX="215.0" layoutY="575.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="118.0" style="-fx-background-color: #C40404;" text="Eliminar">
+            <Button fx:id="btnEliminar" layoutX="215.0" layoutY="575.0" mnemonicParsing="false" onAction="#deleteInventory" prefHeight="35.0" prefWidth="118.0" style="-fx-background-color: #C40404;" text="Eliminar">
                <font>
                   <Font name="Century Gothic Bold" size="14.0" />
                </font>

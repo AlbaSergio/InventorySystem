@@ -251,6 +251,92 @@ public class InventarioController implements Initializable {
         clearField();
     }
 
+    public void updateInventory() {
+        String nombre, marca, descripcion, capacidad;
+        Categoria categoria;
+        Proveedor proveedor;
+        double precio;
+        int cantidad;
+        int idDelete = tblInventario.getSelectionModel().getSelectedIndex();
+        int idInvent = Integer.parseInt(String.valueOf(tblInventario.getItems().get(idDelete).getIdInventario()));
+        int idProduc = Integer.parseInt(String.valueOf(tblInventario.getItems().get(idDelete).getProducto().getIdProducto()));
+        
+        System.out.println(Integer.parseInt(String.valueOf(tblInventario.getItems().get(idDelete).getIdInventario())));
+        nombre = txtNombre.getText().toString();
+        marca = txtMarca.getText().toString();
+        descripcion = txtDescripcion.getText().toString();
+        categoria = cmbCategoria.getSelectionModel().getSelectedItem();
+        proveedor = cmbProveedor.getSelectionModel().getSelectedItem();
+        capacidad = cmbCapacidad.getSelectionModel().getSelectedItem();
+        precio = Double.parseDouble(txtPrecio.getText());
+        cantidad = Integer.parseInt(txtCantidad.getText());
+
+        //Con este objeto abrimos la conexión a la base de datos 
+        connection = MySQLConnection.open();
+
+        //Definimos la consulta SQL que invoca al Stored Procedure:
+        String sql = "CALL actualizarInventario(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        //Con este objeto invocaremos el StoredProcedure:
+        CallableStatement cstmt;
+        try {
+            cstmt = connection.prepareCall(sql);
+
+            //Establecemos los parámetros de los datos del producto en el orden en que
+            //los pide el procedimiento almacenado comenzando en 1:
+            cstmt.setString(1, nombre);
+            cstmt.setString(2, marca);
+            cstmt.setString(3, descripcion);
+            cstmt.setInt(4, categoria.getIdCategoria());
+            cstmt.setInt(5, proveedor.getIdProveedor());
+            cstmt.setString(6, capacidad);
+            cstmt.setDouble(7, precio);
+            cstmt.setInt(8, cantidad);
+
+            //Registramos los valores de retorno 
+            cstmt.setInt(9, idProduc);
+            cstmt.setInt(10, idInvent);
+            
+            System.out.println(idDelete + " " +idProduc + " "+ idInvent );
+
+            cstmt.executeUpdate();
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Registro de Inventario");
+            alert.setHeaderText("Actualizado");
+            alert.setContentText("¡Se actualizó el registro correctamente!");
+            alert.showAndWait();
+        } catch (SQLException ex) {
+            Logger.getLogger(InventarioController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        getAllInventory();
+        clearField();
+    }
+    
+    public void deleteInventory() throws SQLException {
+        int idDelete = tblInventario.getSelectionModel().getSelectedIndex();
+        int id = Integer.parseInt(String.valueOf(tblInventario.getItems().get(idDelete).getIdInventario()));
+
+        //Con este objeto abrimos la conexión a la base de datos 
+        connection = MySQLConnection.open();
+
+        String sql = "UPDATE inventario SET estatus = 0 WHERE idInventario = ?;";
+
+        preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, id);
+        preparedStatement.executeUpdate();
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Registro de Inventario");
+        alert.setHeaderText("Eliminado");
+        alert.setContentText("¡Se elimino el registro del inventario correctamente!");
+        alert.showAndWait();
+
+        getAllInventory();
+        clearField();
+    }
+
     public void showDetailInvetory() {
         Inventario i = this.tblInventario.getSelectionModel().getSelectedItem();
 
@@ -424,7 +510,8 @@ public class InventarioController implements Initializable {
         c.setIdCategoria(rs.getInt("idCategoria"));
 //        c.setNombreCategoria(rs.getString("nombreCategoria"));
 
-        //Datos de Producto
+        //Datos de Producto}
+        p.setIdProducto(rs.getInt("idProducto"));
         p.setNombre(rs.getString("nombre"));
         p.setMarca(rs.getString("marca"));
         p.setDescripcion(rs.getString("descripcion"));
@@ -434,6 +521,7 @@ public class InventarioController implements Initializable {
         p.setPrecio(rs.getDouble("precio"));
 
         // Datos de Inventario
+        i.setIdInventario(rs.getInt("idInventario"));
         i.setProducto(p);
         i.setCantidad(rs.getInt("cantidad"));
 
