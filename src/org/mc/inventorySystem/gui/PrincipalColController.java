@@ -24,19 +24,13 @@ import javafx.stage.Stage;
  *
  * @author practicante02
  */
-public class PrincipalController implements Initializable {
-
-//    @FXML
-//    private Button btnProductos;
+public class PrincipalColController implements Initializable {
 
     @FXML
     private Button btnVentas;
 
     @FXML
-    private Button btnUsuarios;
-
-    @FXML
-    private Button btnGraficas;
+    private Button btnSalir;
 
     @FXML
     private Button btnProveedor;
@@ -47,38 +41,7 @@ public class PrincipalController implements Initializable {
     @FXML
     private Button btnInventario;
 
-    @FXML
-    private Button btnSalir;
-
-//    public void openProducts(ActionEvent event) {
-//        try {
-//            // Cargo la vista
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/mc/inventorySystem/gui/fxml/Producto.fxml"));
-//
-//            // Cargo el padre
-//            Parent root = loader.load();
-//
-//            // Obtengo el controlador
-//            ProductoController controlador = loader.getController();
-//
-//            // Creo la scene y el stage
-//            Scene scene = new Scene(root);
-//            Stage stage = new Stage();
-//
-//            // Asocio el stage con el scene
-//            stage.setScene(scene);
-//            stage.show();
-//
-//            // Indico que debe hacer al cerrar
-//            stage.setOnCloseRequest(e -> controlador.closeWindows());
-//            //Ciero la ventana donde estoy
-//            Stage myStage = (Stage) this.btnProductos.getScene().getWindow();
-//            myStage.close();
-//        } catch (IOException ex) {
-//            Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
-
+    
     public void openSales(ActionEvent event) {
         try {
             // Cargo la vista
@@ -283,7 +246,9 @@ public class PrincipalController implements Initializable {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    /**
+     * Initializes the controller class.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

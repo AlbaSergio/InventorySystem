@@ -298,7 +298,7 @@ public class UsuarioController implements Initializable {
 
         try {
             // Cargo la vista
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/mc/inventorySystem/gui/fxml/Principal.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/mc/inventorySystem/gui/fxml/PrincipalAdmin.fxml"));
 
             // Cargo el padre
             Parent root = loader.load();
@@ -311,6 +311,7 @@ public class UsuarioController implements Initializable {
             Stage stage = new Stage();
 
             // Asocio el stage con el scene
+            stage.setTitle("Sistema de Control");
             stage.setScene(scene);
             stage.show();
 
@@ -323,17 +324,20 @@ public class UsuarioController implements Initializable {
             Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    
 
     /*Botones para Cerrar ventana*/
     public void closeWindows() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/mc/inventorySystem/gui/fxml/Principal.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/mc/inventorySystem/gui/fxml/PrincipalAdmin.fxml"));
 
             Parent root = loader.load();
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();
 
+            stage.setTitle("Sistema de Control");
             stage.setScene(scene);
             stage.show();
 

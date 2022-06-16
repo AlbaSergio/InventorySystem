@@ -6,40 +6,41 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" prefHeight="662.0" prefWidth="1097.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.mc.inventorySystem.gui.UsuarioController">
    <children>
-      <AnchorPane prefHeight="583.0" prefWidth="355.0" style="-fx-background-color: #6FB1FC;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane prefHeight="583.0" prefWidth="355.0" style="-fx-background-color: #9e2063;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Text layoutX="76.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Detalle Usuario">
+            <Text fill="WHITE" layoutX="76.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Detalle Usuario">
                <font>
                   <Font name="Century Gothic Bold" size="27.0" />
                </font>
             </Text>
-            <Text layoutX="20.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre:">
+            <Text fill="WHITE" layoutX="20.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre:">
                <font>
                   <Font name="Century Gothic Bold" size="18.0" />
                </font>
             </Text>
-            <Text layoutX="18.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Apellido Paterno:">
+            <Text fill="WHITE" layoutX="18.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Apellido Paterno:">
                <font>
                   <Font name="Century Gothic Bold" size="18.0" />
                </font>
             </Text>
-            <Text layoutX="20.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Apellido Materno:">
+            <Text fill="WHITE" layoutX="20.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Apellido Materno:">
                <font>
                   <Font name="Century Gothic Bold" size="18.0" />
                </font>
             </Text>
-            <Text layoutX="20.0" layoutY="286.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre Usuario:">
+            <Text fill="WHITE" layoutX="20.0" layoutY="286.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre Usuario:">
                <font>
                   <Font name="Century Gothic Bold" size="18.0" />
                </font>
             </Text>
-            <Text layoutX="20.0" layoutY="356.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña:">
+            <Text fill="WHITE" layoutX="20.0" layoutY="356.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña:">
                <font>
                   <Font name="Century Gothic Bold" size="18.0" />
                </font>
@@ -49,7 +50,7 @@
             <TextField fx:id="txtApeMaterno" layoutX="20.0" layoutY="231.0" prefWidth="295.0" />
             <TextField fx:id="txtUsuario" layoutX="20.0" layoutY="294.0" prefWidth="295.0" />
             <TextField fx:id="txtContrasena" layoutX="20.0" layoutY="362.0" prefWidth="295.0" />
-            <Button fx:id="btnGuardar" layoutX="20.0" layoutY="515.0" mnemonicParsing="false" onAction="#insertUser" prefHeight="35.0" prefWidth="118.0" style="-fx-background-color: #2196f3;" text="Guardar">
+            <Button fx:id="btnGuardar" layoutX="20.0" layoutY="515.0" mnemonicParsing="false" onAction="#insertUser" opacity="0.8" prefHeight="35.0" prefWidth="118.0" style="-fx-background-color: #2196f3;" text="Guardar">
                <font>
                   <Font name="Century Gothic Bold" size="14.0" />
                </font>
@@ -57,7 +58,7 @@
                   <FontAwesomeIconView glyphName="SAVE" size="13.0" />
                </graphic>
             </Button>
-            <Button fx:id="btnModificar" layoutX="20.0" layoutY="578.0" mnemonicParsing="false" onAction="#updateUser" prefHeight="35.0" prefWidth="118.0" style="-fx-background-color: WHITE;" text="Modificar">
+            <Button fx:id="btnModificar" layoutX="20.0" layoutY="578.0" mnemonicParsing="false" onAction="#updateUser" opacity="0.8" prefHeight="35.0" prefWidth="118.0" style="-fx-background-color: WHITE;" text="Modificar">
                <font>
                   <Font name="Century Gothic Bold" size="14.0" />
                </font>
@@ -65,7 +66,7 @@
                   <FontAwesomeIconView glyphName="RETWEET" size="13" />
                </graphic>
             </Button>
-            <Button fx:id="btnNuevo" layoutX="197.0" layoutY="580.0" mnemonicParsing="false" onAction="#clearField" prefHeight="35.0" prefWidth="118.0" style="-fx-background-color: GREEN;" text="Nuevo">
+            <Button fx:id="btnNuevo" layoutX="197.0" layoutY="580.0" mnemonicParsing="false" onAction="#clearField" opacity="0.8" prefHeight="35.0" prefWidth="118.0" style="-fx-background-color: GREEN;" text="Nuevo">
                <font>
                   <Font name="Century Gothic Bold" size="14.0" />
                </font>
@@ -73,7 +74,7 @@
                   <FontAwesomeIconView glyphName="EDIT" size="13.0" />
                </graphic>
             </Button>
-            <Button fx:id="btnEliminar" layoutX="197.0" layoutY="518.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="35.0" prefWidth="118.0" style="-fx-background-color: #C40404;" text="Eliminar">
+            <Button fx:id="btnEliminar" layoutX="197.0" layoutY="518.0" mnemonicParsing="false" onAction="#deleteUser" opacity="0.8" prefHeight="35.0" prefWidth="118.0" style="-fx-background-color: #C40404;" text="Eliminar">
                <font>
                   <Font name="Century Gothic Bold" size="14.0" />
                </font>
@@ -81,7 +82,7 @@
                   <FontAwesomeIconView glyphName="TRASH" size="13" />
                </graphic>
             </Button>
-            <Text layoutX="20.0" layoutY="414.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rol:">
+            <Text fill="WHITE" layoutX="20.0" layoutY="414.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rol:">
                <font>
                   <Font name="Century Gothic Bold" size="18.0" />
                </font>
@@ -96,6 +97,9 @@
             <TableColumn fx:id="colContrasena" prefWidth="153.66668701171875" text="Contraseña" />
             <TableColumn fx:id="colRol" prefWidth="174.0" text="Rol" />
          </columns>
+         <effect>
+            <DropShadow color="#000000c4" radius="8.5175" width="15.07" />
+         </effect>
       </TableView>
       <Button fx:id="btnPrincipal" layoutX="975.0" layoutY="610.0" mnemonicParsing="false" onAction="#backToPrincipal" text="Volver al Menú">
          <font>

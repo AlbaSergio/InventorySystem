@@ -64,11 +64,21 @@ public class VentaController implements Initializable {
     @FXML
     private Button btnPrincipal;
 
-    public void backToPrincipal() {
+   
+
+    /**
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+    }
+
+     public void backToPrincipal() {
 
         try {
             // Cargo la vista
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/mc/inventorySystem/gui/fxml/Principal.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/mc/inventorySystem/gui/fxml/PrincipalAdmin.fxml"));
 
             // Cargo el padre
             Parent root = loader.load();
@@ -81,6 +91,7 @@ public class VentaController implements Initializable {
             Stage stage = new Stage();
 
             // Asocio el stage con el scene
+            stage.setTitle("Sistema de Control");
             stage.setScene(scene);
             stage.show();
 
@@ -94,24 +105,17 @@ public class VentaController implements Initializable {
         }
     }
 
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }
-
     /*Botones para Cerrar ventana*/
     public void closeWindows() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/mc/inventorySystem/gui/fxml/Principal.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/mc/inventorySystem/gui/fxml/PrincipalAdmin.fxml"));
 
             Parent root = loader.load();
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();
 
+            stage.setTitle("Sistema de Control");
             stage.setScene(scene);
             stage.show();
 

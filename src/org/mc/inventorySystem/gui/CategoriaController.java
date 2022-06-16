@@ -253,7 +253,7 @@ public class CategoriaController implements Initializable {
                     this.filtroCategoria.add(c);
                 }
             }
-            
+
             this.tblCategoria.setItems(filtroCategoria);
         }
     }
@@ -263,15 +263,47 @@ public class CategoriaController implements Initializable {
         txtDescripcion.setText("");
     }
 
+    public void backToPrincipal() {
+
+        try {
+            // Cargo la vista
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/mc/inventorySystem/gui/fxml/PrincipalAdmin.fxml"));
+
+            // Cargo el padre
+            Parent root = loader.load();
+
+            // Obtengo el controlador
+            PrincipalController controlador = loader.getController();
+
+            // Creo la scene y el stage            
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+
+            // Asocio el stage con el scene
+            stage.setTitle("Sistema de Control");
+            stage.setScene(scene);
+            stage.show();
+
+            // Indico que debe hacer al cerrar
+            stage.setOnCloseRequest(e -> controlador.closeWindows());
+            //Ciero la ventana donde estoy
+            Stage myStage = (Stage) this.btnPrincipal.getScene().getWindow();
+            myStage.close();
+        } catch (IOException ex) {
+            Logger.getLogger(CategoriaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     public void closeWindows() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/mc/inventorySystem/gui/fxml/Principal.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/mc/inventorySystem/gui/fxml/PrincipalAdmin.fxml"));
 
             Parent root = loader.load();
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();
 
+            stage.setTitle("Sistema de Control");
             stage.setScene(scene);
             stage.show();
 

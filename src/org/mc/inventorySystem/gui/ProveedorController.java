@@ -238,15 +238,15 @@ public class ProveedorController implements Initializable {
         //Llenamos el valor de cada campo de la consulta SQL definida:
         preparedStatement.setInt(1, id);
         preparedStatement.executeUpdate();
-        
+
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Registro de Proveedores");
-            alert.setHeaderText("¡Eliminado!");
-            alert.setContentText("¡Se elininó correctamente el registro!");
-            alert.showAndWait();
-            
-            getAllProviders();
-            clearfields();
+        alert.setTitle("Registro de Proveedores");
+        alert.setHeaderText("¡Eliminado!");
+        alert.setContentText("¡Se elininó correctamente el registro!");
+        alert.showAndWait();
+
+        getAllProviders();
+        clearfields();
     }
 
     public void showDetailProviders() {
@@ -303,16 +303,48 @@ public class ProveedorController implements Initializable {
         return p;
     }
 
+    public void backToPrincipal() {
+
+        try {
+            // Cargo la vista
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/mc/inventorySystem/gui/fxml/PrincipalAdmin.fxml"));
+
+            // Cargo el padre
+            Parent root = loader.load();
+
+            // Obtengo el controlador
+            PrincipalController controlador = loader.getController();
+
+            // Creo la scene y el stage            
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+
+            // Asocio el stage con el scene
+            stage.setTitle("Sistema de Control");
+            stage.setScene(scene);
+            stage.show();
+
+            // Indico que debe hacer al cerrar
+            stage.setOnCloseRequest(e -> controlador.closeWindows());
+            //Ciero la ventana donde estoy
+            Stage myStage = (Stage) this.btnPrincipal.getScene().getWindow();
+            myStage.close();
+        } catch (IOException ex) {
+            Logger.getLogger(ProveedorController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     /*Botones para Cerrar ventana*/
     public void closeWindows() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/mc/inventorySystem/gui/fxml/Principal.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/mc/inventorySystem/gui/fxml/PrincipalAdmin.fxml"));
 
             Parent root = loader.load();
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();
 
+            stage.setTitle("Sistema de Control");
             stage.setScene(scene);
             stage.show();
 

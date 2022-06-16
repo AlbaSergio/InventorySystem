@@ -452,7 +452,7 @@ public class ProductoController implements Initializable {
 
         try {
             // Cargo la vista
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/mc/inventorySystem/gui/fxml/Principal.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/mc/inventorySystem/gui/fxml/PrincipalAdmin.fxml"));
 
             // Cargo el padre
             Parent root = loader.load();
@@ -481,7 +481,7 @@ public class ProductoController implements Initializable {
     /*Botones para Cerrar ventana*/
     public void closeWindows() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/mc/inventorySystem/gui/fxml/Principal.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/mc/inventorySystem/gui/fxml/PrincipalAdmin.fxml"));
 
             Parent root = loader.load();
 

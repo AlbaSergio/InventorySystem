@@ -89,27 +89,40 @@ public class LoginController implements Initializable {
         //Tomamos los valores de las cajas de texto y los asignamos a una variable
         String user = txtUsuario.getText().toString();
         String password = txtPassword.getText().toString();
+        String rol = cmbRol.getSelectionModel().getSelectedItem();
 
         //Esta es la consulta sql que se enviará como petición para validar el usuario
-        String sql = "SELECT * FROM usuario WHERE nombreUsuario = ? and contrasenia = ?";
+        String sql = "SELECT * FROM usuario WHERE nombreUsuario = ? and contrasenia = ? and rol = ? ";
 
         try {
+            System.out.println(rol);
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, user);
             preparedStatement.setString(2, password);
+            preparedStatement.setString(3, rol);
             resultSet = preparedStatement.executeQuery();
             if (!resultSet.next()) {
                 showProgress(false);
                 lblLogin.setText("Usuario no encontrado, Intente de nuevo.");
             } else {
-                showProgress(true);
-                Thread.sleep(3000);
-                Node source = (Node) event.getSource();
-                dialogStage = (Stage) source.getScene().getWindow();
-                dialogStage.close();
-                scene = new Scene(FXMLLoader.load(getClass().getResource("/org/mc/inventorySystem/gui/fxml/Principal.fxml")));
-                dialogStage.setScene(scene);
-                dialogStage.show();
+                if (rol.equals("admin") || rol.equals("Admin")) {
+                    System.out.println("Bien");
+                    showProgress(true);
+                    Node source = (Node) event.getSource();
+                    dialogStage = (Stage) source.getScene().getWindow();
+                    dialogStage.close();
+                    scene = new Scene(FXMLLoader.load(getClass().getResource("/org/mc/inventorySystem/gui/fxml/PrincipalAdmin.fxml")));
+                    dialogStage.setScene(scene);
+                    dialogStage.show();
+                } else if(rol.equals("colaborador") || rol.equals("Colaborador")) {
+                    showProgress(true);
+                    Node source = (Node) event.getSource();
+                    dialogStage = (Stage) source.getScene().getWindow();
+                    dialogStage.close();
+                    scene = new Scene(FXMLLoader.load(getClass().getResource("/org/mc/inventorySystem/gui/fxml/PrincipalCol.fxml")));
+                    dialogStage.setScene(scene);
+                    dialogStage.show();
+                }
             }
         } catch (SQLException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);

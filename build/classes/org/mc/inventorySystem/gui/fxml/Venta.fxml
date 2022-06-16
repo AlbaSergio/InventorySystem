@@ -18,7 +18,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="633.0" prefWidth="1047.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.mc.inventorySystem.gui.VentaController">
    <children>
-      <AnchorPane layoutY="5.0" prefHeight="633.0" prefWidth="342.0" style="-fx-background-color: #6FB1FC;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <AnchorPane layoutY="5.0" prefHeight="633.0" prefWidth="342.0" style="-fx-background-color: #9e2063;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <Button fx:id="btnPrincipal" layoutX="868.0" layoutY="585.0" mnemonicParsing="false" onAction="#backToPrincipal" text="Volver al Menú" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="56.0" AnchorPane.topAnchor="630.0">
          <font>
             <Font name="Century Gothic Bold" size="14.0" />
@@ -43,43 +43,43 @@
             <RowConstraints fillHeight="false" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label prefHeight="23.0" prefWidth="300.0" styleClass="LabelsSubtitle" text="Detalle de Producto" GridPane.columnSpan="2">
+            <Label prefHeight="23.0" prefWidth="300.0" styleClass="LabelsSubtitle" text="Detalle de Producto" textFill="WHITE" GridPane.columnSpan="2">
                <font>
                   <Font name="Century Gothic Bold" size="15.0" />
                </font>
             </Label>
             <Separator prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-            <Label prefHeight="17.0" prefWidth="140.0" styleClass="Labels" text="N° Producto:" GridPane.rowIndex="2">
+            <Label prefHeight="17.0" prefWidth="140.0" styleClass="Labels" text="N° Producto:" textFill="WHITE" GridPane.rowIndex="2">
                <font>
                   <Font name="Century Gothic Bold" size="12.0" />
                </font>
             </Label>
-            <Label prefWidth="140.0" styleClass="Labels" text="Descripción:" GridPane.rowIndex="4">
+            <Label prefWidth="140.0" styleClass="Labels" text="Descripción:" textFill="WHITE" GridPane.rowIndex="4">
                <font>
                   <Font name="Century Gothic Bold" size="12.0" />
                </font>
             </Label>
-            <Label prefWidth="140.0" styleClass="Labels" text="Cantidad Disponible:" wrapText="true" GridPane.rowIndex="5">
+            <Label prefWidth="140.0" styleClass="Labels" text="Cantidad Disponible:" textFill="WHITE" wrapText="true" GridPane.rowIndex="5">
                <font>
                   <Font name="Century Gothic Bold" size="12.0" />
                </font>
             </Label>
-            <Label prefWidth="140.0" styleClass="Labels" text="Nombre Producto:" GridPane.rowIndex="3">
+            <Label prefHeight="15.0" prefWidth="112.0" styleClass="Labels" text="Nombre Producto:" textFill="WHITE" GridPane.rowIndex="3">
                <font>
                   <Font name="Century Gothic Bold" size="12.0" />
                </font>
             </Label>
-            <Label prefWidth="140.0" styleClass="Labels" text="\$ Precio Sugerido:" GridPane.rowIndex="6">
+            <Label prefWidth="140.0" styleClass="Labels" text="\$ Precio Sugerido:" textFill="WHITE" GridPane.rowIndex="6">
                <font>
                   <Font name="Century Gothic Bold" size="12.0" />
                </font>
             </Label>
-            <Label prefWidth="140.0" styleClass="Labels" text="Cantidad Venta:" GridPane.rowIndex="7">
+            <Label prefWidth="140.0" styleClass="Labels" text="Cantidad Venta:" textFill="WHITE" GridPane.rowIndex="7">
                <font>
                   <Font name="Century Gothic Bold" size="12.0" />
                </font>
             </Label>
-            <Label prefWidth="140.0" styleClass="Labels" text="\$ Precio Venta:" GridPane.rowIndex="8">
+            <Label prefWidth="140.0" styleClass="Labels" text="\$ Precio Venta:" textFill="WHITE" GridPane.rowIndex="8">
                <font>
                   <Font name="Century Gothic Bold" size="12.0" />
                </font>
@@ -115,7 +115,7 @@
                </font>
             </Label>
             <ComboBox fx:id="cbProdOut" prefHeight="30.0" prefWidth="162.0" promptText="Cantidad: 1" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <JFXButton fx:id="btnAddProd" prefWidth="160.0" ripplerFill="WHITE" style="-fx-background-color: GREEN;" text="Agregar Producto" GridPane.columnSpan="2" GridPane.rowIndex="9">
+            <JFXButton fx:id="btnAddProd" opacity="0.8" prefWidth="160.0" ripplerFill="WHITE" style="-fx-background-color: GREEN;" text="Agregar Producto" GridPane.columnSpan="2" GridPane.rowIndex="9">
                <font>
                   <Font name="Century Gothic Bold" size="12.0" />
                </font>

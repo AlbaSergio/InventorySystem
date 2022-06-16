@@ -8,26 +8,27 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" prefHeight="678.0" prefWidth="985.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.mc.inventorySystem.gui.CategoriaController">
    <children>
-      <AnchorPane layoutX="20.0" layoutY="47.0" prefHeight="651.0" prefWidth="348.0" style="-fx-background-color: #6FB1FC;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane layoutX="20.0" layoutY="47.0" prefHeight="651.0" prefWidth="348.0" style="-fx-background-color: #9e2063;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Text layoutX="50.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Detalle Categoría ">
+            <Text fill="WHITE" layoutX="50.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Detalle Categoría ">
                <font>
                   <Font name="Century Gothic Bold" size="27.0" />
                </font>
             </Text>
-            <Text layoutX="21.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de Categoría:">
+            <Text fill="WHITE" layoutX="21.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de Categoría:">
                <font>
                   <Font name="Century Gothic Bold" size="17.0" />
                </font>
             </Text>
             <TextField fx:id="txtCategoria" layoutX="17.0" layoutY="167.0" prefHeight="25.0" prefWidth="315.0" />
-            <Button fx:id="btnGuardar" layoutX="17.0" layoutY="550.0" mnemonicParsing="false" onAction="#insertCategories" prefHeight="35.0" prefWidth="118.0" style="-fx-background-color: #2196f3;" text="Guardar">
+            <Button fx:id="btnGuardar" layoutX="17.0" layoutY="550.0" mnemonicParsing="false" onAction="#insertCategories" opacity="0.82" prefHeight="35.0" prefWidth="118.0" style="-fx-background-color: #5dade2;" text="Guardar">
                <font>
                   <Font name="Century Gothic Bold" size="14.0" />
                </font>
@@ -35,7 +36,7 @@
                   <FontAwesomeIconView glyphName="SAVE" size="13.0" />
                </graphic>
             </Button>
-            <Button fx:id="btnModificar" layoutX="17.0" layoutY="613.0" mnemonicParsing="false" onAction="#updateCategories" prefHeight="35.0" prefWidth="118.0" style="-fx-background-color: WHITE;" text="Modificar">
+            <Button fx:id="btnModificar" layoutX="17.0" layoutY="613.0" mnemonicParsing="false" onAction="#updateCategories" opacity="0.8" prefHeight="35.0" prefWidth="118.0" style="-fx-background-color: WHITE;" text="Modificar">
                <font>
                   <Font name="Century Gothic Bold" size="14.0" />
                </font>
@@ -43,15 +44,15 @@
                   <FontAwesomeIconView glyphName="RETWEET" size="13" />
                </graphic>
             </Button>
-            <Button fx:id="btnNuevo" layoutX="215.0" layoutY="615.0" mnemonicParsing="false" onAction="#clearField" prefHeight="35.0" prefWidth="118.0" style="-fx-background-color: GREEN;" text="Nuevo">
+            <Button fx:id="btnNuevo" layoutX="215.0" layoutY="615.0" mnemonicParsing="false" onAction="#clearField" opacity="0.8" prefHeight="35.0" prefWidth="118.0" style="-fx-background-color: #79f282;" text="Nuevo" textFill="#0d0d0d">
                <font>
                   <Font name="Century Gothic Bold" size="14.0" />
                </font>
                <graphic>
-                  <FontAwesomeIconView glyphName="EDIT" size="13.0" />
+                  <FontAwesomeIconView fill="#0d0d0d" glyphName="EDIT" size="13.0" />
                </graphic>
             </Button>
-            <Button fx:id="btnEliminar" layoutX="215.0" layoutY="553.0" mnemonicParsing="false" onAction="#deleteCategories" prefHeight="35.0" prefWidth="118.0" style="-fx-background-color: #C40404;" text="Eliminar">
+            <Button fx:id="btnEliminar" layoutX="215.0" layoutY="553.0" mnemonicParsing="false" onAction="#deleteCategories" opacity="0.8" prefHeight="35.0" prefWidth="118.0" style="-fx-background-color: #f72d2d;" text="Eliminar">
                <font>
                   <Font name="Century Gothic Bold" size="14.0" />
                </font>
@@ -59,7 +60,7 @@
                   <FontAwesomeIconView glyphName="TRASH" size="13" />
                </graphic>
             </Button>
-            <Text layoutX="21.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción:">
+            <Text fill="WHITE" layoutX="21.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción:">
                <font>
                   <Font name="Century Gothic Bold" size="17.0" />
                </font>
@@ -67,13 +68,13 @@
             <TextArea fx:id="txtDescripcion" layoutX="17.0" layoutY="235.0" prefHeight="200.0" prefWidth="315.0" />
          </children>
       </AnchorPane>
-      <JFXTextField fx:id="txtBuscar" layoutX="463.0" layoutY="30.0" onKeyReleased="#filterTable" prefHeight="25.0" prefWidth="517.0" AnchorPane.leftAnchor="463.0" AnchorPane.rightAnchor="5.0" />
-      <Label layoutX="374.0" layoutY="36.0" style="-fx-background-color: #6FB1FC;" text="Buscar:">
+      <JFXTextField fx:id="txtBuscar" focusColor="#9c2162df" layoutX="463.0" layoutY="30.0" onKeyReleased="#filterTable" prefHeight="25.0" prefWidth="517.0" AnchorPane.leftAnchor="463.0" AnchorPane.rightAnchor="5.0" />
+      <Label layoutX="374.0" layoutY="36.0" opacity="0.68" style="-fx-background-color: #9e2063;" text="Buscar:" textFill="WHITE">
          <font>
             <Font name="Century Gothic Bold" size="18.0" />
          </font>
          <graphic>
-            <FontAwesomeIconView glyphName="SEARCH" size="15" />
+            <FontAwesomeIconView fill="WHITE" glyphName="SEARCH" size="15" />
          </graphic>
       </Label>
       <TableView fx:id="tblCategoria" layoutX="367.0" layoutY="70.0" onMouseClicked="#showDetailCategories" prefHeight="551.0" prefWidth="607.0" AnchorPane.bottomAnchor="57.0" AnchorPane.leftAnchor="375.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="70.0">
@@ -81,8 +82,11 @@
           <TableColumn fx:id="colNombre" prefWidth="75.0" text="Nombre" />
             <TableColumn fx:id="colDescripcion" prefWidth="75.0" text="Descripción" />
         </columns>
+         <effect>
+            <DropShadow color="#000000c4" radius="8.5175" width="15.07" />
+         </effect>
       </TableView>
-      <Button fx:id="btnPrincipal" layoutX="870.0" layoutY="648.0" mnemonicParsing="false" text="Volver al Menú" AnchorPane.bottomAnchor="7.0" AnchorPane.rightAnchor="11.0">
+      <Button fx:id="btnPrincipal" layoutX="870.0" layoutY="648.0" mnemonicParsing="false" onAction="#backToPrincipal" text="Volver al Menú" AnchorPane.bottomAnchor="7.0" AnchorPane.rightAnchor="11.0">
          <font>
             <Font name="Century Gothic Bold" size="12.0" />
          </font>

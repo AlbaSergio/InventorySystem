@@ -9,6 +9,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -21,6 +22,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/org/mc/inventorySystem/gui/fxml/Login.fxml"));
         Scene scene = new Scene(root);
+        primaryStage.getIcons().add(new Image("/org/mc/inventorySystem/res/logoMC.png"));
         primaryStage.setTitle("Sistema de Control");
         primaryStage.setScene(scene);
         primaryStage.show();

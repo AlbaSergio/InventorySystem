@@ -10,26 +10,20 @@
 
 <AnchorPane id="AnchorPane" prefHeight="547.0" prefWidth="873.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.mc.inventorySystem.gui.PrincipalController">
    <children>
-      <AnchorPane layoutX="2.0" layoutY="-1.0" prefHeight="528.0" prefWidth="264.0" style="-fx-background-color: #6FB1FC;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane layoutX="2.0" layoutY="-1.0" prefHeight="528.0" prefWidth="264.0" style="-fx-background-color: #9e2063;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Text layoutX="87.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Menú">
+            <Text fill="WHITE" layoutX="87.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Menú">
                <font>
                   <Font name="Century Gothic Bold" size="30.0" />
                </font>
             </Text>
-            <FontAwesomeIconView glyphName="HOME" layoutX="58.0" layoutY="59.0" size="27" />
+            <FontAwesomeIconView fill="WHITE" glyphName="HOME" layoutX="58.0" layoutY="59.0" size="27" />
             <Button fx:id="btnVentas" layoutX="39.0" layoutY="279.0" mnemonicParsing="false" onAction="#openSales" prefHeight="45.0" prefWidth="130.0" style="-fx-background-color: none;" text="Venta">
-               <font>
-                  <Font name="Century Gothic Bold" size="21.0" />
-               </font>
                <graphic>
                   <FontAwesomeIconView glyphName="MONEY" size="18" wrappingWidth="18.803575336933136" />
                </graphic>
             </Button>
             <Button fx:id="btnUsuarios" layoutX="46.0" layoutY="240.0" mnemonicParsing="false" onAction="#openUsers" style="-fx-background-color: none;" text="Usuarios">
-               <font>
-                  <Font name="Century Gothic Bold" size="21.0" />
-               </font>
                <graphic>
                   <FontAwesomeIconView glyphName="USERS" size="18" />
                </graphic>
@@ -43,9 +37,6 @@
                </graphic>
             </Button>
             <Button fx:id="btnProveedor" layoutX="44.0" layoutY="97.0" mnemonicParsing="false" onAction="#openProviders" style="-fx-background-color: none;" text="Proveedores">
-               <font>
-                  <Font name="Century Gothic Bold" size="21.0" />
-               </font>
                <graphic>
                   <FontAwesomeIconView glyphName="BELL" size="18" />
                </graphic>
@@ -59,9 +50,6 @@
                </graphic>
             </Button>
             <Button fx:id="btnInventario" layoutX="23.0" layoutY="190.0" mnemonicParsing="false" onAction="#openInventory" prefHeight="47.0" prefWidth="198.0" style="-fx-background-color: none;" text="Inventario">
-               <font>
-                  <Font name="Century Gothic Bold" size="21.0" />
-               </font>
                <graphic>
                   <FontAwesomeIconView glyphName="BARCODE" size="17" wrappingWidth="18.803575336933136" />
                </graphic>

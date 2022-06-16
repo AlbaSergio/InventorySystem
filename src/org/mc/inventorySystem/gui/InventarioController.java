@@ -442,7 +442,7 @@ public class InventarioController implements Initializable {
     /*Botones para Cerrar ventana*/
     public void closeWindows() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/mc/inventorySystem/gui/fxml/Principal.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/mc/inventorySystem/gui/fxml/PrincipalAdmin.fxml"));
 
             Parent root = loader.load();
 
@@ -464,7 +464,7 @@ public class InventarioController implements Initializable {
 
         try {
             // Cargo la vista
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/mc/inventorySystem/gui/fxml/Principal.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/mc/inventorySystem/gui/fxml/PrincipalAdmin.fxml"));
 
             // Cargo el padre
             Parent root = loader.load();
@@ -472,7 +472,7 @@ public class InventarioController implements Initializable {
             // Obtengo el controlador
             PrincipalController controlador = loader.getController();
 
-            // Creo la scene y el stage
+            // Creo la scene y el stage            
             Scene scene = new Scene(root);
             Stage stage = new Stage();
 
