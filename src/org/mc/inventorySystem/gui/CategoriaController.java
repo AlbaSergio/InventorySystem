@@ -30,6 +30,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import org.mc.inventorySystem.core.MySQLConnection;
@@ -38,7 +39,7 @@ import org.mc.inventorySystem.core.model.Categoria;
 /**
  * FXML Controller class
  *
- * @author practicante02
+ * @author Sergio Alba Arguello
  */
 public class CategoriaController implements Initializable {
 
@@ -278,7 +279,7 @@ public class CategoriaController implements Initializable {
             // Creo la scene y el stage            
             Scene scene = new Scene(root);
             Stage stage = new Stage();
-
+            stage.getIcons().add(new Image("/org/mc/inventorySystem/res/logoMC.png"));
             // Asocio el stage con el scene
             stage.setTitle("Sistema de Control");
             stage.setScene(scene);
@@ -302,7 +303,7 @@ public class CategoriaController implements Initializable {
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();
-
+            stage.getIcons().add(new Image("/org/mc/inventorySystem/res/logoMC.png"));
             stage.setTitle("Sistema de Control");
             stage.setScene(scene);
             stage.show();

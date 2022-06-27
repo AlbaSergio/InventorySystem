@@ -17,12 +17,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
  * FXML Controller class
  *
- * @author practicante02
+ * @author Sergio Alba Arguello
  */
 public class PrincipalColController implements Initializable {
 
@@ -41,7 +42,6 @@ public class PrincipalColController implements Initializable {
     @FXML
     private Button btnInventario;
 
-    
     public void openSales(ActionEvent event) {
         try {
             // Cargo la vista
@@ -56,7 +56,7 @@ public class PrincipalColController implements Initializable {
             // Creo la scene y el stage
             Scene scene = new Scene(root);
             Stage stage = new Stage();
-
+            stage.getIcons().add(new Image("/org/mc/inventorySystem/res/logoMC.png"));
             // Asocio el stage con el scene
             stage.setTitle("Sistema de Venta");
             stage.setScene(scene);
@@ -86,7 +86,7 @@ public class PrincipalColController implements Initializable {
             // Creo la scene y el stage
             Scene scene = new Scene(root);
             Stage stage = new Stage();
-
+            stage.getIcons().add(new Image("/org/mc/inventorySystem/res/logoMC.png"));
             // Asocio el stage con el scene
             stage.setTitle("Sistema de Gestión de Usuarios");
             stage.setScene(scene);
@@ -145,7 +145,7 @@ public class PrincipalColController implements Initializable {
             // Creo la scene y el stage
             Scene scene = new Scene(root);
             Stage stage = new Stage();
-
+            stage.getIcons().add(new Image("/org/mc/inventorySystem/res/logoMC.png"));
             // Asocio el stage con el scene
             stage.setTitle("Sistema para Registro de Proveedores");
             stage.setScene(scene);
@@ -175,7 +175,7 @@ public class PrincipalColController implements Initializable {
             // Creo la scene y el stage
             Scene scene = new Scene(root);
             Stage stage = new Stage();
-
+            stage.getIcons().add(new Image("/org/mc/inventorySystem/res/logoMC.png"));
             // Asocio el stage con el scene
             stage.setTitle("Sistema para Registro de Categorias");
             stage.setScene(scene);
@@ -190,7 +190,7 @@ public class PrincipalColController implements Initializable {
             Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void openInventory(ActionEvent event) {
         try {
             // Cargo la vista
@@ -205,7 +205,7 @@ public class PrincipalColController implements Initializable {
             // Creo la scene y el stage
             Scene scene = new Scene(root);
             Stage stage = new Stage();
-
+            stage.getIcons().add(new Image("/org/mc/inventorySystem/res/logoMC.png"));
             // Asocio el stage con el scene
             stage.setTitle("Sistema de Inventario");
             stage.setScene(scene);
@@ -234,7 +234,7 @@ public class PrincipalColController implements Initializable {
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();
-
+            stage.getIcons().add(new Image("/org/mc/inventorySystem/res/logoMC.png"));
             stage.setTitle("Iniciar Sesión");
             stage.setScene(scene);
             stage.show();
@@ -246,6 +246,7 @@ public class PrincipalColController implements Initializable {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     /**
      * Initializes the controller class.
      */

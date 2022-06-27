@@ -29,6 +29,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.mc.inventorySystem.core.MySQLConnection;
 import org.mc.inventorySystem.core.model.Usuario;
@@ -36,7 +37,7 @@ import org.mc.inventorySystem.core.model.Usuario;
 /**
  * FXML Controller class
  *
- * @author practicante02
+ * @author Sergio Alba Arguello
  */
 public class UsuarioController implements Initializable {
 
@@ -198,7 +199,7 @@ public class UsuarioController implements Initializable {
         preparedStatement.setString(5, contrasenia);
         preparedStatement.setString(6, rol);
         preparedStatement.setInt(7, id);
-        System.out.println(idDelete+" "+id);
+        System.out.println(idDelete + " " + id);
         preparedStatement.executeUpdate();
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -220,22 +221,22 @@ public class UsuarioController implements Initializable {
 
         //Con este objeto abrimos la conexión a la base de datos 
         connection = MySQLConnection.open();
-        
+
         String sql = "UPDATE usuario SET estatus = 0 WHERE idUsuario = ?;";
-        
+
         preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1, id);
         preparedStatement.executeUpdate();
-        
+
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Registro de Usuarios");
         alert.setHeaderText("¡Eliminado!");
         alert.setContentText("¡Se eliminó el registro correctamente!");
         alert.showAndWait();
-        
+
         getAllUsers();
         clearField();
-        
+
     }
 
     public void getAllUsers() {
@@ -309,7 +310,7 @@ public class UsuarioController implements Initializable {
             // Creo la scene y el stage
             Scene scene = new Scene(root);
             Stage stage = new Stage();
-
+            stage.getIcons().add(new Image("/org/mc/inventorySystem/res/logoMC.png"));
             // Asocio el stage con el scene
             stage.setTitle("Sistema de Control");
             stage.setScene(scene);
@@ -324,8 +325,6 @@ public class UsuarioController implements Initializable {
             Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
 
     /*Botones para Cerrar ventana*/
     public void closeWindows() {
@@ -336,7 +335,7 @@ public class UsuarioController implements Initializable {
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();
-
+            stage.getIcons().add(new Image("/org/mc/inventorySystem/res/logoMC.png"));
             stage.setTitle("Sistema de Control");
             stage.setScene(scene);
             stage.show();

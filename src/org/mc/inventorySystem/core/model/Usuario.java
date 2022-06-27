@@ -7,7 +7,7 @@ package org.mc.inventorySystem.core.model;
 
 /**
  *
- * @author practicante02
+ * @author Sergio Alba Arguello
  */
 public class Usuario {
 

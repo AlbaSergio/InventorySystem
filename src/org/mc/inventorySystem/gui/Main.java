@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package org.mc.inventorySystem.gui;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,7 +13,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author Sergio Alba
+ * @author Sergio Alba Arguello
  */
 public class Main extends Application {
 

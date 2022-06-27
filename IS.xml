@@ -4,7 +4,7 @@
   <headerType>gui</headerType>
   <jar>C:\Users\practicante02\Documents\NetBeansProjects\inventorySystem\dist\inventorySystem.jar</jar>
   <outfile>C:\Users\practicante02\Documents\NetBeansProjects\inventorySystem\dist\inventorySystem.exe</outfile>
-  <errTitle></errTitle>
+  <errTitle>La cagaste</errTitle>
   <cmdLine></cmdLine>
   <chdir>.</chdir>
   <priority>normal</priority>
@@ -23,4 +23,11 @@
     <jdkPreference>preferJre</jdkPreference>
     <runtimeBits>64/32</runtimeBits>
   </jre>
+  <messages>
+    <startupErr>An error occurred while starting the application.</startupErr>
+    <bundledJreErr>This application requires a Java Runtime Environment.</bundledJreErr>
+    <jreVersionErr>This application requires a Java Runtime Environment</jreVersionErr>
+    <launcherErr>The registry refers to a nonexistent Java Runtime Environment installation or the runtime is corrupted.</launcherErr>
+    <instanceAlreadyExistsMsg>An application instance is already running.</instanceAlreadyExistsMsg>
+  </messages>
 </launch4jConfig>

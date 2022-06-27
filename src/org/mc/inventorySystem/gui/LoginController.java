@@ -37,7 +37,7 @@ import org.mc.inventorySystem.core.MySQLConnection;
 /**
  * FXML Controller class
  *
- * @author practicante02
+ * @author Sergio Alba Arguello
  */
 public class LoginController implements Initializable {
 

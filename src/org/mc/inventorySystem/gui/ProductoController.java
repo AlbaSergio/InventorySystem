@@ -30,6 +30,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javax.swing.JTextField;
@@ -145,7 +146,7 @@ public class ProductoController implements Initializable {
         //Aquí guardaremos los objetos de tipo Productos. 
         //Una lista es un contenedor dinámico de objetos.
         ObservableList<Producto> obp = FXCollections.observableArrayList();
-        
+
         Producto p = null;
         //Definimos la consulta SQL:
         String sql = "SELECT * FROM producto WHERE estatus = 1";
@@ -382,12 +383,12 @@ public class ProductoController implements Initializable {
             Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public Categoria fillComboBox1() throws SQLException {
         ObservableList<Categoria> categorias = FXCollections.observableArrayList();
         //Definimos la consulta SQL:
         String sql = "SELECT idCategoria, nombre FROM categoria WHERE estatus = 1";
- 
+
         Categoria c = new Categoria();
         //Con este objeto nos vamos a conectar a la Base de Datos:
         connection = MySQLConnection.open();
@@ -396,7 +397,7 @@ public class ProductoController implements Initializable {
             preparedStatement = connection.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
             // Recorremos el ResultSet:
-            while (resultSet.next()) {                
+            while (resultSet.next()) {
                 c.setIdCategoria(resultSet.getInt("idCategoria"));
                 c.setNombreCategoria(resultSet.getString("nombre"));
                 categorias.add(c);
@@ -420,8 +421,7 @@ public class ProductoController implements Initializable {
         Producto p = new Producto();
         Categoria c = new Categoria();
 
-        c =  fillComboBox1();
-        
+        c = fillComboBox1();
 
         // Llenamos sus propiedades:
         p.setIdProducto(rs.getInt("idProducto"));
@@ -463,7 +463,7 @@ public class ProductoController implements Initializable {
             // Creo la scene y el stage
             Scene scene = new Scene(root);
             Stage stage = new Stage();
-
+            stage.getIcons().add(new Image("/org/mc/inventorySystem/res/logoMC.png"));
             // Asocio el stage con el scene
             stage.setScene(scene);
             stage.show();
@@ -487,7 +487,7 @@ public class ProductoController implements Initializable {
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();
-
+            stage.getIcons().add(new Image("/org/mc/inventorySystem/res/logoMC.png"));
             stage.setScene(scene);
             stage.show();
 

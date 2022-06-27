@@ -19,12 +19,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
  * FXML Controller class
  *
- * @author practicante02
+ * @author Sergio Alba Arguello
  */
 public class VentaController implements Initializable {
 
@@ -64,8 +65,6 @@ public class VentaController implements Initializable {
     @FXML
     private Button btnPrincipal;
 
-   
-
     /**
      * Initializes the controller class.
      */
@@ -74,7 +73,7 @@ public class VentaController implements Initializable {
         // TODO
     }
 
-     public void backToPrincipal() {
+    public void backToPrincipal() {
 
         try {
             // Cargo la vista
@@ -94,7 +93,7 @@ public class VentaController implements Initializable {
             stage.setTitle("Sistema de Control");
             stage.setScene(scene);
             stage.show();
-
+            stage.getIcons().add(new Image("/org/mc/inventorySystem/res/logoMC.png"));
             // Indico que debe hacer al cerrar
             stage.setOnCloseRequest(e -> controlador.closeWindows());
             //Ciero la ventana donde estoy
@@ -114,7 +113,7 @@ public class VentaController implements Initializable {
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();
-
+            stage.getIcons().add(new Image("/org/mc/inventorySystem/res/logoMC.png"));
             stage.setTitle("Sistema de Control");
             stage.setScene(scene);
             stage.show();

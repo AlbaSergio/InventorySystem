@@ -33,6 +33,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import org.mc.inventorySystem.core.MySQLConnection;
@@ -44,7 +45,7 @@ import org.mc.inventorySystem.core.model.Proveedor;
 /**
  * FXML Controller class
  *
- * @author practicante02
+ * @author Sergio Alba Arguello
  */
 public class InventarioController implements Initializable {
 
@@ -260,7 +261,7 @@ public class InventarioController implements Initializable {
         int idDelete = tblInventario.getSelectionModel().getSelectedIndex();
         int idInvent = Integer.parseInt(String.valueOf(tblInventario.getItems().get(idDelete).getIdInventario()));
         int idProduc = Integer.parseInt(String.valueOf(tblInventario.getItems().get(idDelete).getProducto().getIdProducto()));
-        
+
         System.out.println(Integer.parseInt(String.valueOf(tblInventario.getItems().get(idDelete).getIdInventario())));
         nombre = txtNombre.getText().toString();
         marca = txtMarca.getText().toString();
@@ -296,8 +297,8 @@ public class InventarioController implements Initializable {
             //Registramos los valores de retorno 
             cstmt.setInt(9, idProduc);
             cstmt.setInt(10, idInvent);
-            
-            System.out.println(idDelete + " " +idProduc + " "+ idInvent );
+
+            System.out.println(idDelete + " " + idProduc + " " + idInvent);
 
             cstmt.executeUpdate();
 
@@ -313,7 +314,7 @@ public class InventarioController implements Initializable {
         getAllInventory();
         clearField();
     }
-    
+
     public void deleteInventory() throws SQLException {
         int idDelete = tblInventario.getSelectionModel().getSelectedIndex();
         int id = Integer.parseInt(String.valueOf(tblInventario.getItems().get(idDelete).getIdInventario()));
@@ -448,7 +449,7 @@ public class InventarioController implements Initializable {
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();
-
+            stage.getIcons().add(new Image("/org/mc/inventorySystem/res/logoMC.png"));
             stage.setTitle("Sistema de Control");
             stage.setScene(scene);
             stage.show();
@@ -475,7 +476,7 @@ public class InventarioController implements Initializable {
             // Creo la scene y el stage            
             Scene scene = new Scene(root);
             Stage stage = new Stage();
-
+            stage.getIcons().add(new Image("/org/mc/inventorySystem/res/logoMC.png"));
             // Asocio el stage con el scene
             stage.setTitle("Sistema de Control");
             stage.setScene(scene);
